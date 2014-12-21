@@ -12,7 +12,12 @@ using log4net.Config;
     {
         public class Warrior
         {
-            public int State = 0; //1 - Attack, 2 - Defend, 3 - Rest, 4 - Check;
+            private enum State
+            {
+                Idle , Attacking , Defending , Resting
+            }
+
+            private State _state;
             public int Life = 100;
             private static ILog _logger;
 
