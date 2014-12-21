@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Business;
+using log4net;
 using log4net.Config;
 
 namespace Business.tests
@@ -12,7 +13,8 @@ namespace Business.tests
     [TestFixture]
     public class WarriorTester
     {
-        private Warrior _tester;
+        private Warrior _warrior;
+        private readonly ILog testLogger;
 
         [TestFixtureSetUp]
         public void FixtureSetUp()
@@ -21,10 +23,10 @@ namespace Business.tests
         }
 
         [Test]
-        public void Test()
+        public void TestCheck()
         {
 
-            _tester.Check();
+            _warrior.Check();
         }
     }
 }
