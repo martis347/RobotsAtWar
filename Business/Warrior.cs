@@ -47,7 +47,10 @@ namespace Business
 
              private void Interrupt()
             {
-                _state = State.Interrupted;
+                 if (_state == State.Resting || _state == State.Attacking)
+                 {
+                     _state = State.Interrupted;
+                 }
             }
 
             public int Attack(int time)
