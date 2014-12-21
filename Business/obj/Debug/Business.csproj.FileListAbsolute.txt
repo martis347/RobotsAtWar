@@ -5,3 +5,10 @@ c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\Business\bin
 c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
 c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\Business\obj\Debug\Business.dll
 c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\Business\obj\Debug\Business.pdb
+C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
+C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\obj\Debug\Business.dll
+C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\bin\Debug\Business.dll
+C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\bin\Debug\Business.pdb
+C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\bin\Debug\log4net.dll
+C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\bin\Debug\log4net.xml
+C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\obj\Debug\Business.pdb

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Business;
@@ -18,7 +19,7 @@ namespace RobotsAtWar
 
         static void Main(string[] args)
         {
-            _infrastructureLogger = LogManager.GetLogger("ConsoleAppender");
+            _infrastructureLogger = LogManager.GetLogger(typeof(Infrastructure));
             XmlConfigurator.Configure(new FileInfo("..\\..\\App.config"));
 
 
