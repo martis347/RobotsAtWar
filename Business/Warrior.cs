@@ -1,4 +1,7 @@
-﻿using log4net;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using log4net;
 
 namespace Business
     {
@@ -23,7 +26,7 @@ namespace Business
 
             private State _state;
             private int Life;
-            
+            private Queue<Command> 
             private static ILog _logger;
 
             public Warrior(int life = 100)
@@ -34,12 +37,17 @@ namespace Business
 
             public void Start()
             {
-                _logger.Info("Service started");
+                _logger.Info("Service started.");
             }
 
             public void Stop()
             {
 
+            }
+
+             private void Interrupt()
+            {
+                _state = State.Interrupted;
             }
 
             public int Attack(int time)
@@ -48,9 +56,9 @@ namespace Business
                 return 0;
             }
 
+
             public void GetAttacked(int damage)
             {
-                
             }
 
 
