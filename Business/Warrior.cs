@@ -18,8 +18,14 @@ namespace Business
 
         public struct Command
         {
-            private Action action;
-            private int time;
+            public Action Action;
+            public int Time;
+        }
+
+        public struct Info
+        {
+            public State State;
+            public int Life;
         }
         
         public class Warrior
@@ -28,7 +34,6 @@ namespace Business
 
             private State _state;
             private int _life;
-            private Queue<Command> _commandQueue;
             private static ILog _logger;
 
             public Warrior(int life = 100)
@@ -48,7 +53,7 @@ namespace Business
                 
             }
 
-             private void Interrupt()
+            private void Interrupt()
             {
                  if (_state == State.Resting || _state == State.Attacking)
                  {
@@ -90,14 +95,32 @@ namespace Business
                 _logger.Info("Resting comeplete.");
             }
 
-            public void Check()
+            public Info Check()
             {
-                _logger
+                _logger.Info("Checking current state and life.");
+                Info info;
+                info.Life = _life;
+                info.State = _state;
+                return info;
             }
 
             public void SetCommand(Command command)
             {
-                
+                switch (command.Action)
+                {
+                    case Action.Attack:
+                        Attack(command.Time);
+                        break;
+                    case Action.Defend:
+                        Defend(command.Time);
+                        break;
+                    case Action.Rest:
+                        Rest(command.Time);
+                        break;
+                    case Action.Check:
+                        Check();
+                        break;
+                }
             }
         }
     }
