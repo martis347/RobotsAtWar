@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using Business;
 using log4net;
 using log4net.Config;
 using Topshelf;
-
 
 namespace RobotsAtWar
 {
@@ -38,8 +32,13 @@ namespace RobotsAtWar
 
 
                 config.SetServiceName("RobotService"); 
+<<<<<<< HEAD
                 config.SetDisplayName("Thaobot");
                 config.SetDescription("TopshelfRobot");
+=======
+                config.SetDisplayName("RobotService");
+                config.SetDescription("Topshelf Robot");
+>>>>>>> 2219dd58d94b558eff34a19f939cb727fb3dca4e
                 config.RunAsLocalService();
                 config.DependsOnEventLog();
                 config.StartAutomatically();
