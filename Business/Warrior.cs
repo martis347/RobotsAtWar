@@ -27,14 +27,15 @@ namespace Business
             
 
             private State _state;
-            private int Life;
-            private Queue<Command> commandQueue;
+            private int _life;
+            private Queue<Command> _commandQueue;
             private static ILog _logger;
 
             public Warrior(int life = 100)
             {
                 _logger = LogManager.GetLogger(typeof(Warrior));
                 _state = State.Idle;
+                _life = life;
             }
 
             public void Start()
@@ -79,7 +80,7 @@ namespace Business
                 Thread.Sleep(time*1000);
                 if (_state == State.Resting)
                 {
-                    Life += (int)Math.Pow(2, time);
+                    _life += (int)Math.Pow(2, time);
                     _logger.Info("Successfully healed.");
                 }
                 else
@@ -91,7 +92,7 @@ namespace Business
 
             public void Check()
             {
-
+                _logger
             }
 
             public void SetCommand(Command command)
