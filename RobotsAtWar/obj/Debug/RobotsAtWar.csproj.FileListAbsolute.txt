@@ -1,0 +1,11 @@
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.exe.config
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.exe
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.pdb
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\log4net.dll
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Topshelf.dll
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\log4net.xml
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.csprojResolveAssemblyReference.cache
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.exe
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.pdb
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Business.dll
+c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Business.pdb
