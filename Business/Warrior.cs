@@ -2,15 +2,28 @@
 
 namespace Business
     {
+        public enum State
+        {
+            Idle, Attacking, Defending, Resting, Checking, Interrupted
+        }
+        public enum Action
+        {
+            Attack = 1, Defend, Rest, Check
+        }
+
+        public struct Command
+        {
+            private Action action;
+            private int time;
+        }
+        
         public class Warrior
         {
-            private enum State
-            {
-                Idle , Attacking , Defending , Resting
-            }
+            
 
             private State _state;
-            public int Life;
+            private int Life;
+            
             private static ILog _logger;
 
             public Warrior(int life = 100)
@@ -29,23 +42,36 @@ namespace Business
 
             }
 
-            public int Attack()
+            public int Attack(int time)
             {
                 
                 return 0;
             }
 
+            public void GetAttacked(int damage)
+            {
+                
+            }
+
+
             public void Defend(int time)
             {
 
             }
+
             public void Rest(int time)
             {
 
             }
+
             public void Check()
             {
 
+            }
+
+            public void SetCommand(Command command)
+            {
+                
             }
         }
     }
