@@ -80,12 +80,14 @@ namespace Business
 
             public void Rest(int time)
             {
+                if (time < 1) time = 1;
+
                 _logger.Info(String.Format("Starting to rest for {0}s.", time));
                 _state = State.Resting;
                 Thread.Sleep(time*1000);
                 if (_state == State.Resting)
                 {
-                    _life += (int)Math.Pow(2, time);
+                    _life += (int)Math.Pow(2, time-1);
                     _logger.Info("Successfully healed.");
                 }
                 else
@@ -101,6 +103,7 @@ namespace Business
                 Info info;
                 info.Life = _life;
                 info.State = _state;
+                Thread.Sleep(200);
                 return info;
             }
 

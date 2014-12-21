@@ -8,19 +8,28 @@ namespace Business.tests
     public class WarriorTester
     {
         private Warrior _warrior;
-        private readonly ILog testLogger;
+        //private ILog _testLogger;
 
         [TestFixtureSetUp]
         public void FixtureSetUp()
         {
-            XmlConfigurator.Configure();
         }
 
-        [Test]
-        public void TestCheck()
+        [SetUp]
+        public void Setup()
         {
-
-            _warrior.Check();
+            _warrior = new Warrior(10);
         }
+        [Test]
+        [TestCase(0, 11)]
+        [TestCase(1, 11)]
+        [TestCase(3, 14)]
+        public void TestRest(int time, int expectation)
+        {
+            _warrior.Rest(time);
+            Assert.AreEqual(expectation,_warrior.Check().Life);
+        }
+
+
     }
 }
