@@ -1,4 +1,9 @@
-﻿using log4net;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using log4net;
+using Microsoft.Win32;
 
 namespace Business
     {
@@ -23,7 +28,7 @@ namespace Business
 
             private State _state;
             private int Life;
-            
+            private Queue<Command> commandQueue;
             private static ILog _logger;
 
             public Warrior(int life = 100)
@@ -34,12 +39,20 @@ namespace Business
 
             public void Start()
             {
-                _logger.Info("Service started");
+                _logger.Info("Service started.");
             }
 
             public void Stop()
             {
+                
+            }
 
+             private void Interrupt()
+            {
+                 if (_state == State.Resting || _state == State.Attacking)
+                 {
+                     _state = State.Interrupted;
+                 }
             }
 
             public int Attack(int time)
@@ -48,9 +61,9 @@ namespace Business
                 return 0;
             }
 
+
             public void GetAttacked(int damage)
             {
-                
             }
 
 
@@ -61,7 +74,19 @@ namespace Business
 
             public void Rest(int time)
             {
-
+                _logger.Info(String.Format("Starting to rest for {0}s.", time));
+                _state = State.Resting;
+                Thread.Sleep(time*1000);
+                if (_state == State.Resting)
+                {
+                    Life += (int)Math.Pow(2, time);
+                    _logger.Info("Successfully healed.");
+                }
+                else
+                {
+                    _logger.Info("Healing was interrupted.");
+                }
+                _logger.Info("Resting comeplete.");
             }
 
             public void Check()
