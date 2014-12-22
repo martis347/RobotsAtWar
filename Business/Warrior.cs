@@ -23,11 +23,9 @@ namespace Business
         
         public class Warrior
         {
-            
-
             private State _state;
             private int Life;
-            private Queue<Command> 
+            //private Queue<Command> 
             private static ILog _logger;
 
             public Warrior(int life = 100)
@@ -43,6 +41,7 @@ namespace Business
 
             public void Stop()
             {
+                _logger.Info("Service stoped.");
 
             }
 
@@ -51,21 +50,28 @@ namespace Business
                  if (_state == State.Resting || _state == State.Attacking)
                  {
                      _state = State.Interrupted;
+                     _logger.Info("Warrior got interrupted!");
                  }
             }
 
             public int Attack(int time)
             {
+                _logger.Info("Entering attack state");
                 if (time > 3)
+                {
+                    _logger.Info("You can't attack for that long!");
                     return 0;
+                }
 
                 _state = State.Attacking;
                 Thread.Sleep(time*1000);
                 if (time == 3)
                 {
+                    _logger.Info("You have dealt "+4+" damage!");
                     _state = State.Idle;
                     return time + 1;
                 }
+                _logger.Info("You have dealt " + time + " damage!");
                 _state = State.Idle;
                 return time;
             }
@@ -79,14 +85,20 @@ namespace Business
 
             public void GetAttacked(int damage)
             {
-                Life -= damage;
+                if(_state == State.Defending)
+                _logger.Info("You have been attacked while defending! 0 Life points lost");
+                else
+                    Life -= damage;
+                    _logger.Info("You have lost " + damage + " life points!");
             }
 
 
             public void Defend(int time)
             {
+                _logger.Info("Entering defence state!");
                 _state = State.Defending;
                 Thread.Sleep(time*1000);
+                _state = State.Idle;
             }
 
             public void Rest(int time)
