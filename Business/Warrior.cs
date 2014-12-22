@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-﻿using System.Threading;
-=======
+﻿
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
->>>>>>> addad6b17b4522e28894710ca5bd7c292bb6ccea
 using log4net;
 
 namespace Business
@@ -29,13 +26,8 @@ namespace Business
             
 
             private State _state;
-<<<<<<< HEAD
-            private int life;
-            
-=======
             private int Life;
             private Queue<Command> 
->>>>>>> addad6b17b4522e28894710ca5bd7c292bb6ccea
             private static ILog _logger;
 
             public Warrior(int life = 100)
@@ -87,10 +79,7 @@ namespace Business
 
             public void GetAttacked(int damage)
             {
-<<<<<<< HEAD
-                life -= damage;
-=======
->>>>>>> addad6b17b4522e28894710ca5bd7c292bb6ccea
+                Life -= damage;
             }
 
 
