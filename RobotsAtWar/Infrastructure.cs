@@ -32,13 +32,8 @@ namespace RobotsAtWar
 
 
                 config.SetServiceName("RobotService"); 
-<<<<<<< HEAD
-                config.SetDisplayName("Thaobot");
-                config.SetDescription("TopshelfRobot");
-=======
                 config.SetDisplayName("RobotService");
                 config.SetDescription("Topshelf Robot");
->>>>>>> 2219dd58d94b558eff34a19f939cb727fb3dca4e
                 config.RunAsLocalService();
                 config.DependsOnEventLog();
                 config.StartAutomatically();

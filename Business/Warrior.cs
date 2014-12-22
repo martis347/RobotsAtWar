@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using System.Threading;
+using log4net;
 
 namespace Business
     {
@@ -22,7 +23,7 @@ namespace Business
             
 
             private State _state;
-            private int Life;
+            private int life;
             
             private static ILog _logger;
 
@@ -44,24 +45,41 @@ namespace Business
 
             public int Attack(int time)
             {
-                
-                return 0;
+                if (time > 3)
+                    return 0;
+
+                _state = State.Attacking;
+                Thread.Sleep(time*1000);
+                if (time == 3)
+                {
+                    _state = State.Idle;
+                    return time + 1;
+                }
+                _state = State.Idle;
+                return time;
+            }
+
+            public void Attacking(int damage)
+            {
+                //Opponent.GetAttacked(damage);
+                //Something like Opponent.GetAttacked(Attack(3));
             }
 
             public void GetAttacked(int damage)
             {
-                
+                life -= damage;
             }
 
 
             public void Defend(int time)
             {
-
+                _state = State.Defending;
+                Thread.Sleep(time*1000);
             }
 
             public void Rest(int time)
             {
-
+                 
             }
 
             public void Check()
