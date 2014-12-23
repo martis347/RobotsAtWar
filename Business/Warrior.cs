@@ -37,7 +37,7 @@ namespace Business
             {
                 _logger = LogManager.GetLogger(typeof(Warrior));
                 _state = State.Idle;
-                _life = life;
+                _life = life > 1 ? life : 1;
             }
 
             public void Start()

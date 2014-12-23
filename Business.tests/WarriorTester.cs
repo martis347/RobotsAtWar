@@ -20,6 +20,17 @@ namespace Business.tests
         {
             _warrior = new Warrior(10);
         }
+
+        [Test]
+        [TestCase(10, 10)]
+        [TestCase(-1, 1)]
+        [TestCase(100, 100)]
+        public void TestWarriorConstructor(int life, int expectation)
+        {
+            Warrior testWarrior = new Warrior(life);
+            Assert.AreEqual(expectation, testWarrior.Check().Life);
+        }
+
         [Test]
         [TestCase(0, 11)]
         [TestCase(1, 11)]
