@@ -19,7 +19,7 @@ namespace Business.Tests
         //TearDown (after every)
         //FixtureTearDown (after all)
         public void SetUp()
-        {
+        { 
             _warrior = new Warrior();
         }
 
@@ -35,6 +35,8 @@ namespace Business.Tests
             Assert.AreEqual(4, power3);
             var power4 = _warrior.Attack(345);
             Assert.AreEqual(0, power4);
+            var power5 = _warrior.Attack(-2);
+            Assert.AreEqual(0, power5);
             
         }
         [Test]
@@ -44,6 +46,8 @@ namespace Business.Tests
             _warrior.GetAttacked(2);
             _warrior.GetAttacked(3);
             _warrior.GetAttacked(4);
+            _warrior.GetAttacked(-2);
+
 
         }
         [Test]
@@ -52,6 +56,8 @@ namespace Business.Tests
 
             _warrior.Defend(1);
             _warrior.Defend(2);
+            _warrior.Defend(-2);
+
 
         }
     }

@@ -56,7 +56,7 @@ namespace Business
             public int Attack(int time)
             {
                 _logger.Info("Entering attack state");
-                if (time > 3)
+                if (time > 3 || time < 1)
                 {
                     _logger.Info("You can't attack for that long!");
                     return 0;
@@ -83,6 +83,11 @@ namespace Business
 
             public void GetAttacked(int damage)
             {
+                if (damage<1)
+                {
+                    _logger.Info("Invalid damage!");
+                    return;
+                }
                 if (_state == State.Defending)
                     _logger.Info("You have been attacked while defending! 0 Life points lost");
                 else
@@ -96,6 +101,11 @@ namespace Business
 
             public void Defend(int time)
             {
+                if (time<1)
+                {
+                    _logger.Info("Invalid time!");
+                    return;
+                }
                 _logger.Info("Entering defence state!");
                 _state = State.Defending;
                 Thread.Sleep(time*1000);
