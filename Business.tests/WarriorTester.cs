@@ -60,5 +60,14 @@ namespace Business.Tests
 
 
         }
+        [Test]
+        [TestCase(0, 11)]
+        [TestCase(1, 11)]
+        [TestCase(3, 14)]
+        public void TestRest(int time, int expectation)
+        {
+            _warrior.Rest(time);
+            Assert.AreEqual(expectation, _warrior.Check().Life);
+        }
     }
 }
