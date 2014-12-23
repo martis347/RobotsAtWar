@@ -1,4 +1,6 @@
-﻿using log4net;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using log4net;
 using log4net.Config;
 using NUnit.Framework;
 
@@ -8,7 +10,6 @@ namespace Business.tests
     public class WarriorTester
     {
         private Warrior _warrior;
-        //private ILog _testLogger;
 
         [TestFixtureSetUp]
         public void FixtureSetUp()
@@ -39,6 +40,29 @@ namespace Business.tests
         {
             _warrior.Rest(time);
             Assert.AreEqual(expectation,_warrior.Check().Life);
+        }
+
+        [Test]
+        [TestCase(Action.Attack, State.Attacking)]
+        [TestCase(Action.Defend, State.Defending)]
+        [TestCase(Action.Rest, State.Resting)]
+        public void TestCheck(Action action, State expectation)
+        {
+            Command command;
+            command.Action = action;
+            command.Time = 2;
+            Parallel.Invoke(
+                () =>
+                {
+                    _warrior.SetCommand(command);
+                },
+
+                () =>
+                {
+                    Thread.Sleep(500);
+                    Assert.AreEqual(_warrior.Check().State, expectation);
+                }
+            );
         }
 
 

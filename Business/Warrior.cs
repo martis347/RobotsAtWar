@@ -17,6 +17,12 @@ namespace Business
         {
             public Action Action;
             public int Time;
+
+            public Command(Action action, int time)
+            {
+                Action = action;
+                Time = time;
+            }
         }
 
         public struct Info
