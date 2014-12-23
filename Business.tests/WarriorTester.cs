@@ -10,10 +10,14 @@ namespace Business.Tests
     public class WarriorTester
     {
         private Warrior _warrior;
+<<<<<<< HEAD
+=======
+        //private ILog _testLogger;
+
+>>>>>>> remotes/origin/MatasFeatures
         [TestFixtureSetUp]
         public void FixtureSetUp()
         {
-            XmlConfigurator.Configure();
         }
         [SetUp]
         //TearDown (after every)
@@ -23,7 +27,13 @@ namespace Business.Tests
             _warrior = new Warrior();
         }
 
+        [SetUp]
+        public void Setup()
+        {
+            _warrior = new Warrior(10);
+        }
         [Test]
+<<<<<<< HEAD
         public void AttackCheck()
         {
 
@@ -59,6 +69,17 @@ namespace Business.Tests
             _warrior.Defend(-2);
 
 
+=======
+        [TestCase(0, 11)]
+        [TestCase(1, 11)]
+        [TestCase(3, 14)]
+        public void TestRest(int time, int expectation)
+        {
+            _warrior.Rest(time);
+            Assert.AreEqual(expectation,_warrior.Check().Life);
+>>>>>>> remotes/origin/MatasFeatures
         }
+
+
     }
 }
