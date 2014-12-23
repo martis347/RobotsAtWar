@@ -69,6 +69,7 @@ namespace Business
                     _logger.Info("Your attack has been interrupted!");
                     return 0;
                 }
+                
                 if (time == 3)
                 {
                     _logger.Info("You have dealt "+4+" damage!");

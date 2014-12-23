@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotsAtWar", "RobotsAtWar\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{69D69F24-9701-4ECB-B359-1FB819AC04A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.tests", "Business.tests\Business.tests.csproj", "{DFF3E30D-15AF-461F-A64E-87B99BA96317}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Tests", "Business.tests\Business.Tests.csproj", "{DFF3E30D-15AF-461F-A64E-87B99BA96317}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
