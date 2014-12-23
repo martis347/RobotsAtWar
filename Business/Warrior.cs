@@ -47,11 +47,10 @@ namespace Business
 
              private void Interrupt()
             {
-                 if (_state == State.Resting || _state == State.Attacking)
-                 {
-                     _state = State.Interrupted;
-                     _logger.Info("Warrior got interrupted!");
-                 }
+                 if (_state != State.Resting && _state != State.Attacking) return;
+
+                 _state = State.Interrupted;
+                 _logger.Info("Warrior got interrupted!");
             }
 
             public int Attack(int time)
@@ -65,6 +64,11 @@ namespace Business
 
                 _state = State.Attacking;
                 Thread.Sleep(time*1000);
+                if (_state == State.Interrupted)
+                {
+                    _logger.Info("Your attack has been interrupted!");
+                    return 0;
+                }
                 if (time == 3)
                 {
                     _logger.Info("You have dealt "+4+" damage!");
@@ -76,20 +80,16 @@ namespace Business
                 return time;
             }
 
-            public void Attacking(int damage)
-            {
-                //Opponent.GetAttacked(damage);
-                //Something like Opponent.GetAttacked(Attack(3));
-            }
-
-
             public void GetAttacked(int damage)
             {
-                if(_state == State.Defending)
-                _logger.Info("You have been attacked while defending! 0 Life points lost");
+                if (_state == State.Defending)
+                    _logger.Info("You have been attacked while defending! 0 Life points lost");
                 else
+                {
                     Life -= damage;
                     _logger.Info("You have lost " + damage + " life points!");
+                }
+                    
             }
 
 
