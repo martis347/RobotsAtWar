@@ -39,23 +39,27 @@ namespace Business
         {
             _logger = LogManager.GetLogger(typeof (Warrior));
             _state = State.Idle;
+            _life = life;
         }
 
         public void Start()
         {
             _logger.Info("Service started.");
+            var command = new Command {Action = Action.Attack, Time = 2};
+            SetCommand(command);
+            command.Action = Action.Check;
+            SetCommand(command);
         }
 
         public void Stop()
         {
             _logger.Info("Service stoped.");
-
         }
 
         private void Interrupt()
         {
-            if (_state != State.Resting && _state != State.Attacking) return;
-
+            if (_state != State.Resting && _state != State.Attacking) 
+                return;
             _state = State.Interrupted;
             _logger.Info("Warrior got interrupted!");
         }
@@ -105,7 +109,6 @@ namespace Business
 
         }
 
-
         public void Defend(int time)
         {
             if (time < 1)
@@ -135,7 +138,7 @@ namespace Business
             {
                 _logger.Info("Healing was interrupted.");
             }
-            _logger.Info("Resting comeplete.");
+            _logger.Info("Resting complete.");
         }
 
         public Info Check()

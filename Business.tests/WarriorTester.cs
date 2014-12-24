@@ -20,23 +20,20 @@ namespace Business.Tests
         //FixtureTearDown (after all)
         public void SetUp()
         { 
-            _warrior = new Warrior();
+            _warrior = new Warrior(100);
         }
 
         [Test]
-        public void AttackCheck()
-        {
+        [TestCase(1,1)]
+        [TestCase(2, 2)]
+        [TestCase(3, 4)]
+        [TestCase(4, 0)]
+        [TestCase(-1, 0)]
 
-            var power = _warrior.Attack(1);
-            Assert.AreEqual(1, power);
-            var power2 = _warrior.Attack(2);
-            Assert.AreEqual(2, power2);
-            var power3 = _warrior.Attack(3);
-            Assert.AreEqual(4, power3);
-            var power4 = _warrior.Attack(345);
-            Assert.AreEqual(0, power4);
-            var power5 = _warrior.Attack(-2);
-            Assert.AreEqual(0, power5);
+        public void AttackCheck(int time, int power)
+        {
+            
+            Assert.AreEqual(_warrior.Attack(time),power);
             
         }
         [Test]
@@ -61,13 +58,14 @@ namespace Business.Tests
 
         }
         [Test]
-        [TestCase(0, 11)]
-        [TestCase(1, 11)]
-        [TestCase(3, 14)]
+        [TestCase(0, 101)]
+        [TestCase(1, 101)]
+        [TestCase(3, 104)]
         public void TestRest(int time, int expectation)
         {
             _warrior.Rest(time);
             Assert.AreEqual(expectation, _warrior.Check().Life);
         }
+        
     }
 }
