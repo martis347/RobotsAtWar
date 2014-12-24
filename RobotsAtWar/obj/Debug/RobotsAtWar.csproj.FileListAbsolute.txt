@@ -20,3 +20,6 @@ C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\Topshelf.dll
 C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\Business.pdb
 C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\log4net.xml
 C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.csprojResolveAssemblyReference.cache
+C:\Users\Matas\Dropbox\Adform\RAW\RobotsAtWar\bin\Debug\RobotsAtWar.exe.config
+C:\Users\Matas\Dropbox\Adform\RAW\RobotsAtWar\obj\Debug\RobotsAtWar.exe
+C:\Users\Matas\Dropbox\Adform\RAW\RobotsAtWar\obj\Debug\RobotsAtWar.pdb

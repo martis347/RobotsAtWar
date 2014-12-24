@@ -12,3 +12,10 @@ C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\bin\Debug\Business.pdb
 C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\bin\Debug\log4net.dll
 C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\bin\Debug\log4net.xml
 C:\Users\Matas\Dropbox\Adform\RobotsAtWar\Business\obj\Debug\Business.pdb
+C:\Users\Matas\Dropbox\Adform\RAW\Business\bin\Debug\Business.dll
+C:\Users\Matas\Dropbox\Adform\RAW\Business\bin\Debug\Business.pdb
+C:\Users\Matas\Dropbox\Adform\RAW\Business\bin\Debug\log4net.dll
+C:\Users\Matas\Dropbox\Adform\RAW\Business\bin\Debug\log4net.xml
+C:\Users\Matas\Dropbox\Adform\RAW\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
+C:\Users\Matas\Dropbox\Adform\RAW\Business\obj\Debug\Business.dll
+C:\Users\Matas\Dropbox\Adform\RAW\Business\obj\Debug\Business.pdb

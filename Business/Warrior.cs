@@ -1,9 +1,7 @@
 ﻿
 ﻿using System;
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using log4net;
+﻿using System.Threading;
+﻿using log4net;
 
 namespace Business
 {

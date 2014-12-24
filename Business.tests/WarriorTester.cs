@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using log4net;
-using log4net.Config;
+﻿using log4net.Config;
 using NUnit.Framework;
 
 namespace Business.Tests
@@ -10,14 +7,14 @@ namespace Business.Tests
     public class WarriorTester
     {
         private Warrior _warrior;
+
         [TestFixtureSetUp]
         public void FixtureSetUp()
         {
             XmlConfigurator.Configure();
         }
+
         [SetUp]
-        //TearDown (after every)
-        //FixtureTearDown (after all)
         public void SetUp()
         { 
             _warrior = new Warrior(100);
@@ -29,13 +26,11 @@ namespace Business.Tests
         [TestCase(3, 4)]
         [TestCase(4, 0)]
         [TestCase(-1, 0)]
-
         public void AttackCheck(int time, int power)
         {
-            
             Assert.AreEqual(_warrior.Attack(time),power);
-            
         }
+
         [Test]
         public void GetAttackedCheck()
         {
@@ -47,6 +42,7 @@ namespace Business.Tests
 
 
         }
+
         [Test]
         public void DefenceCheck()
         {
@@ -57,6 +53,7 @@ namespace Business.Tests
 
 
         }
+
         [Test]
         [TestCase(0, 101)]
         [TestCase(1, 101)]
@@ -66,6 +63,7 @@ namespace Business.Tests
             _warrior.Rest(time);
             Assert.AreEqual(expectation, _warrior.Check().Life);
         }
-        
     }
 }
+//TearDown (after every)
+//FixtureTearDown (after all)
