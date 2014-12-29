@@ -2,7 +2,6 @@
 ﻿using System;
 ﻿using System.Threading;
 ﻿using log4net;
-
 namespace Business
 {
     public enum State

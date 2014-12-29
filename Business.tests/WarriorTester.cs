@@ -1,4 +1,5 @@
-﻿using log4net.Config;
+﻿using Business;
+using log4net.Config;
 using NUnit.Framework;
 
 namespace Business.Tests
@@ -6,6 +7,7 @@ namespace Business.Tests
     [TestFixture]
     public class WarriorTester
     {
+        private const int Clife = 100;
         private Warrior _warrior;
 
         [TestFixtureSetUp]
@@ -55,9 +57,9 @@ namespace Business.Tests
         }
 
         [Test]
-        [TestCase(0, 101)]
-        [TestCase(1, 101)]
-        [TestCase(3, 104)]
+        [TestCase(0, Clife+1)]
+        [TestCase(1, Clife + 1)]
+        [TestCase(3, Clife + 4)]
         public void TestRest(int time, int expectation)
         {
             _warrior.Rest(time);
