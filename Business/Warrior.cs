@@ -1,43 +1,29 @@
-﻿
-﻿using System;
-﻿using System.Threading;
+﻿﻿using System;
+﻿using Business.Enums;
 ﻿using log4net;
+using Action = Business.Enums.Action;
+
 namespace Business
 {
-    public enum State
+    public class Warrior : IResetable
     {
-        Idle, Attacking, Defending, Resting, Checking, Interrupted
-    }
-    public enum Action
-    {
-        Attack = 1, Defend, Rest, Check
-    }
+        private readonly ITimeMachine _timeMachine;
 
-    public struct Command
-    {
-        public Action Action;
-        public int Time;
-    }
+        public WarriorState WarriorState { get; private set; }
 
-    public struct Info
-    {
-        public State State;
-        public int Life;
-    }
-
-    public class Warrior
-    {
-
-        private State _state;
-        private int _life;
         private static ILog _logger;
 
-        public Warrior(int life = 100)
+
+        public Warrior(ITimeMachine timeMachine, int life = 100)
         {
+            if (timeMachine == null) throw new ArgumentNullException("timeMachine");
+            _timeMachine = timeMachine;
+
             _logger = LogManager.GetLogger(typeof (Warrior));
-            _state = State.Idle;
-            _life = life;
+
+            WarriorState = new WarriorState{Life = life};
         }
+
 
         public void Start()
         {
@@ -53,14 +39,6 @@ namespace Business
             _logger.Info("Service stoped.");
         }
 
-        private void Interrupt()
-        {
-            if (_state != State.Resting && _state != State.Attacking) 
-                return;
-            _state = State.Interrupted;
-            _logger.Info("Warrior got interrupted!");
-        }
-
         public int Attack(int time)
         {
             _logger.Info("Entering attack state");
@@ -70,9 +48,9 @@ namespace Business
                 return 0;
             }
 
-            _state = State.Attacking;
-            Thread.Sleep(time*1000);
-            if (_state == State.Interrupted)
+            WarriorState.State = State.Attacking;
+            _timeMachine.Sleep(time * 1000, this);
+            if (WarriorState.State == State.Interrupted)
             {
                 _logger.Info("Your attack has been interrupted!");
                 return 0;
@@ -81,11 +59,11 @@ namespace Business
             if (time == 3)
             {
                 _logger.Info("You have dealt " + 4 + " damage!");
-                _state = State.Idle;
+                WarriorState.State = State.Idle;
                 return time + 1;
             }
             _logger.Info("You have dealt " + time + " damage!");
-            _state = State.Idle;
+            WarriorState.State = State.Idle;
             return time;
         }
 
@@ -96,11 +74,11 @@ namespace Business
                 _logger.Info("Invalid damage!");
                 return;
             }
-            if (_state == State.Defending)
+            if (WarriorState.State == State.Defending)
                 _logger.Info("You have been attacked while defending! 0 Life points lost");
             else
             {
-                _life -= damage;
+                WarriorState.Life -= damage;
                 _logger.Info("You have lost " + damage + " life points!");
             }
 
@@ -114,9 +92,9 @@ namespace Business
                 return;
             }
             _logger.Info("Entering defence state!");
-            _state = State.Defending;
-            Thread.Sleep(time*1000);
-            _state = State.Idle;
+            WarriorState.State = State.Defending;
+            _timeMachine.Sleep(time * 1000, this);
+            WarriorState.State = State.Idle;
         }
 
         public void Rest(int time)
@@ -124,11 +102,11 @@ namespace Business
             if (time < 1) time = 1;
 
             _logger.Info(String.Format("Starting to rest for {0}s.", time));
-            _state = State.Resting;
-            Thread.Sleep(time*1000);
-            if (_state == State.Resting)
+            WarriorState.State = State.Resting;
+            _timeMachine.Sleep(time * 1000, this);
+            if (WarriorState.State == State.Resting)
             {
-                _life += (int) Math.Pow(2, time - 1);
+                WarriorState.Life += (int)Math.Pow(2, time - 1);
                 _logger.Info("Successfully healed.");
             }
             else
@@ -138,17 +116,23 @@ namespace Business
             _logger.Info("Resting complete.");
         }
 
-        public Info Check()
+        public WarriorState Check()
         {
             _logger.Info("Checking current state and life.");
-            Info info;
-            info.Life = _life;
-            info.State = _state;
-            Thread.Sleep(200);
-            return info;
+
+            return WarriorState;
         }
 
-        public void SetCommand(Command command)
+
+        private void Interrupt()
+        {
+            if (WarriorState.State != State.Resting && WarriorState.State != State.Attacking)
+                return;
+            WarriorState.State = State.Interrupted;
+            _logger.Info("Warrior got interrupted!");
+        }
+
+        private void SetCommand(Command command)
         {
             switch (command.Action)
             {
@@ -165,6 +149,11 @@ namespace Business
                     Check();
                     break;
             }
+        }
+
+        public void Reset()
+        {
+            WarriorState.State = State.Idle;
         }
     }
 }

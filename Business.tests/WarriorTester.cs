@@ -1,5 +1,4 @@
-﻿using Business;
-using log4net.Config;
+﻿using log4net.Config;
 using NUnit.Framework;
 
 namespace Business.Tests
@@ -18,8 +17,8 @@ namespace Business.Tests
 
         [SetUp]
         public void SetUp()
-        { 
-            _warrior = new Warrior(100);
+        {
+            _warrior = new Warrior(new FakeTimeMachine(), 100);
         }
 
         [Test]
@@ -52,8 +51,6 @@ namespace Business.Tests
             _warrior.Defend(1);
             _warrior.Defend(2);
             _warrior.Defend(-2);
-
-
         }
 
         [Test]
