@@ -1,4 +1,8 @@
-﻿using log4net.Config;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Business.Enums;
+using log4net.Config;
 using NUnit.Framework;
 
 namespace Business.Tests
@@ -6,7 +10,7 @@ namespace Business.Tests
     [TestFixture]
     public class WarriorTester
     {
-        private const int Clife = 100;
+        private const int CLIFE = 100;
         private Warrior _warrior;
 
         [TestFixtureSetUp]
@@ -22,41 +26,44 @@ namespace Business.Tests
         }
 
         [Test]
-        [TestCase(1,1)]
-        [TestCase(2, 2)]
-        [TestCase(3, 4)]
-        [TestCase(4, 0)]
-        [TestCase(-1, 0)]
-        public void AttackCheck(int time, int power)
+        [TestCase(Strength.None, State.Attacking, State.Attacking)]
+        [TestCase(Strength.Weak, State.Attacking, State.Attacking)]
+        [TestCase(Strength.Normal, State.Attacking, State.Attacking)]
+        [TestCase(Strength.Strong, State.Attacking, State.Attacking)]
+        public void AttackCheck(Strength str, State state,State expected)
         {
-            Assert.AreEqual(_warrior.Attack(time),power);
+            _warrior.Attack(str);
+            Assert.AreEqual(expected,_warrior.Check().State);
         }
 
         [Test]
-        public void GetAttackedCheck()
+        [TestCase(Strength.None, CLIFE)]
+        [TestCase(Strength.Weak, CLIFE-1)]
+        [TestCase(Strength.Normal, CLIFE-2)]
+        [TestCase(Strength.Strong, CLIFE-4)]
+        public void GetAttackedCheck(Strength str,int expectedLife)
         {
-            _warrior.GetAttacked(1);
-            _warrior.GetAttacked(2);
-            _warrior.GetAttacked(3);
-            _warrior.GetAttacked(4);
-            _warrior.GetAttacked(-2);
-
+            _warrior.GetAttacked(str);
+            Assert.AreEqual(expectedLife,_warrior.Check().Life);
 
         }
 
         [Test]
-        public void DefenceCheck()
+        [TestCase(Strength.None,CLIFE)]
+        [TestCase(Strength.Weak, CLIFE)]
+        [TestCase(Strength.Normal, CLIFE)]
+        [TestCase(Strength.Strong, CLIFE)]
+        public void DefenceCheck(Strength str,int expectedLife)
         {
-
             _warrior.Defend(1);
-            _warrior.Defend(2);
-            _warrior.Defend(-2);
+            _warrior.GetAttacked(str);
+            Assert.AreEqual(expectedLife, _warrior.Check().Life);
         }
 
         [Test]
-        [TestCase(0, Clife+1)]
-        [TestCase(1, Clife + 1)]
-        [TestCase(3, Clife + 4)]
+        [TestCase(0, CLIFE+1)]
+        [TestCase(1, CLIFE + 1)]
+        [TestCase(3, CLIFE + 4)]
         public void TestRest(int time, int expectation)
         {
             _warrior.Rest(time);

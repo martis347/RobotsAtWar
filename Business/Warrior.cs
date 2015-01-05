@@ -7,6 +7,8 @@ namespace Business
 {
     public class Warrior : IResetable
     {
+
+        
         private readonly ITimeMachine _timeMachine;
 
         public WarriorState WarriorState { get; private set; }
@@ -39,41 +41,28 @@ namespace Business
             _logger.Info("Service stoped.");
         }
 
-        public int Attack(int time)
+        public void Attack(Strength str)
         {
-            _logger.Info("Entering attack state");
-            if (time > 3 || time < 1)
-            {
-                _logger.Info("You can't attack for that long!");
-                return 0;
-            }
-
             WarriorState.State = State.Attacking;
-            _timeMachine.Sleep(time * 1000, this);
+
+            _timeMachine.Sleep(((int)str) * 1000, this);
+
             if (WarriorState.State == State.Interrupted)
             {
                 _logger.Info("Your attack has been interrupted!");
-                return 0;
-            }
-
-            if (time == 3)
-            {
-                _logger.Info("You have dealt " + 4 + " damage!");
-                WarriorState.State = State.Idle;
-                return time + 1;
-            }
-            _logger.Info("You have dealt " + time + " damage!");
-            WarriorState.State = State.Idle;
-            return time;
-        }
-
-        public void GetAttacked(int damage)
-        {
-            if (damage < 1)
-            {
-                _logger.Info("Invalid damage!");
                 return;
             }
+
+            //Enemy.Interrupt();
+            //Enemy.GetAttacked(str);
+        }
+
+        public void GetAttacked(Strength str)
+        {
+            var damage = (int) str;
+            if (str == Strength.Strong)
+                damage = 4;
+
             if (WarriorState.State == State.Defending)
                 _logger.Info("You have been attacked while defending! 0 Life points lost");
             else
@@ -94,7 +83,6 @@ namespace Business
             _logger.Info("Entering defence state!");
             WarriorState.State = State.Defending;
             _timeMachine.Sleep(time * 1000, this);
-            WarriorState.State = State.Idle;
         }
 
         public void Rest(int time)
@@ -122,7 +110,7 @@ namespace Business
 
             return WarriorState;
         }
-
+        
 
         private void Interrupt()
         {
@@ -137,7 +125,7 @@ namespace Business
             switch (command.Action)
             {
                 case Action.Attack:
-                    Attack(command.Time);
+                    Attack(command.Power);
                     break;
                 case Action.Defend:
                     Defend(command.Time);
