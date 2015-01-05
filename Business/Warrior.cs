@@ -7,11 +7,9 @@ namespace Business
 {
     public class Warrior : IResetable
     {
-
-        
         private readonly ITimeMachine _timeMachine;
 
-        public WarriorState WarriorState { get; private set; }
+        private WarriorState WarriorState { get; set; }
 
         private static ILog _logger;
 
@@ -30,11 +28,15 @@ namespace Business
         public void Start()
         {
             _logger.Info("Service started.");
-            var command = new Command {Action = Action.Attack, Time = 2};
-            SetCommand(command);
-            command.Action = Action.Check;
-            SetCommand(command);
+            Warrior1 = new Warrior(new TimeMachine());
+            Warrior2 = new Warrior(new TimeMachine());
+            Enemy.Warrior1 = Warrior2;
+
         }
+
+        public Warrior Warrior2 { get; private set; }
+
+        public Warrior Warrior1 { get; private set; }
 
         public void Stop()
         {
@@ -110,7 +112,6 @@ namespace Business
 
             return WarriorState;
         }
-        
 
         private void Interrupt()
         {
@@ -144,5 +145,6 @@ namespace Business
             WarriorState.State = State.Idle;
         }
     }
-}
 
+
+}
