@@ -23,10 +23,10 @@ namespace RobotsAtWar
             {
 
                 _infrastructureLogger.Info("Attempting to start service");
-                config.Service<Warrior>(svc =>
+                config.Service<Battlefield>(svc =>
                 {
-                    svc.ConstructUsing(s => new Warrior(new TimeMachine()));
-                    svc.WhenStarted(s => s.Start());
+                    svc.ConstructUsing(s => new Battlefield());
+                    svc.WhenStarted(s => s.Fight());
                     svc.WhenStopped(s => s.Stop());
                 });
 

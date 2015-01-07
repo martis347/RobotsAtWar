@@ -1,4 +1,5 @@
 ﻿﻿using System;
+﻿using System.Collections.Generic;
 ﻿using Business.Enums;
 ﻿using log4net;
 using Action = Business.Enums.Action;
@@ -7,14 +8,20 @@ namespace Business
 {
     public class Warrior : IResetable
     {
+
+        private Warrior _enemy;
+
         private readonly ITimeMachine _timeMachine;
 
         private WarriorState WarriorState { get; set; }
 
         private static ILog _logger;
 
+        private readonly List<Command> _strategy = new List<Command>();
 
-        public Warrior(ITimeMachine timeMachine, int life = 100)
+
+
+        public Warrior(ITimeMachine timeMachine, int life = 100, List<Command> strategy = null)
         {
             if (timeMachine == null) throw new ArgumentNullException("timeMachine");
             _timeMachine = timeMachine;
@@ -22,22 +29,33 @@ namespace Business
             _logger = LogManager.GetLogger(typeof (Warrior));
 
             WarriorState = new WarriorState{Life = life};
+           // _strategy = strategy;
+            _strategy = _strategy == null ? new List<Command>() : strategy;
         }
 
 
         public void Start()
         {
             _logger.Info("Service started.");
-            Warrior1 = new Warrior(new TimeMachine());
-            Warrior2 = new Warrior(new TimeMachine());
-            Enemy.Warrior1 = Warrior2;
+            
 
         }
 
-        public Warrior Warrior2 { get; private set; }
-
-        public Warrior Warrior1 { get; private set; }
-
+        public void SetEnemy(Warrior enemyWarrior)
+        {
+            _enemy = enemyWarrior;
+        }
+        public void FightMe()
+        {
+           // if (_strategy.Count == 0) return;
+            int it = 0;
+            Console.WriteLine(_strategy.Count);
+            while (WarriorState.State != State.Dead )
+            {
+                SetCommand(_strategy[it++ % _strategy.Count]);
+              // Console.WriteLine(_strategy.Count);
+            }
+        }
         public void Stop()
         {
             _logger.Info("Service stoped.");
@@ -46,7 +64,7 @@ namespace Business
         public void Attack(Strength str)
         {
             WarriorState.State = State.Attacking;
-
+            _logger.Info("Attacking");
             _timeMachine.Sleep(((int)str) * 1000, this);
 
             if (WarriorState.State == State.Interrupted)
@@ -94,14 +112,14 @@ namespace Business
             _logger.Info(String.Format("Starting to rest for {0}s.", time));
             WarriorState.State = State.Resting;
             _timeMachine.Sleep(time * 1000, this);
-            if (WarriorState.State == State.Resting)
+            if (WarriorState.State == State.Interrupted)
             {
-                WarriorState.Life += (int)Math.Pow(2, time - 1);
-                _logger.Info("Successfully healed.");
+                _logger.Info("Healing was interrupted.");
             }
             else
             {
-                _logger.Info("Healing was interrupted.");
+                WarriorState.Life += (int)Math.Pow(2, time - 1);
+                _logger.Info("Successfully healed.");
             }
             _logger.Info("Resting complete.");
         }
