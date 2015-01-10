@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
 using Business.Enums;
@@ -12,6 +13,8 @@ namespace Business.Tests
     {
         private const int CLIFE = 100;
         private Warrior _warrior;
+        private Warrior _warrior2;
+
 
         [TestFixtureSetUp]
         public void FixtureSetUp()
@@ -23,29 +26,30 @@ namespace Business.Tests
         public void SetUp()
         {
             _warrior = new Warrior(new FakeTimeMachine(), 100);
+            _warrior2 = new Warrior(new FakeTimeMachine(), 100);
+            _warrior.SetEnemy(_warrior2);
         }
-
         [Test]
-        [TestCase(Strength.None, State.Attacking, State.Attacking)]
-        [TestCase(Strength.Weak, State.Attacking, State.Attacking)]
-        [TestCase(Strength.Normal, State.Attacking, State.Attacking)]
-        [TestCase(Strength.Strong, State.Attacking, State.Attacking)]
-        public void AttackCheck(Strength str, State state,State expected)
+        [TestCase(Strength.None, State.Attacking, State.Attacking, State.Interrupted)]
+        [TestCase(Strength.Weak, State.Attacking, State.Attacking, State.Interrupted)]
+        [TestCase(Strength.Normal, State.Attacking, State.Attacking, State.Interrupted)]
+        [TestCase(Strength.Strong, State.Attacking, State.Attacking, State.Interrupted)]
+        public void AttackCheck(Strength str, State state,State expected,State expectedEnemy)
         {
             _warrior.Attack(str);
-            Assert.AreEqual(expected,_warrior.Check().State);
+            Assert.AreEqual(expected,_warrior.CheckMe().State);
         }
 
         [Test]
-        [TestCase(Strength.None, CLIFE)]
-        [TestCase(Strength.Weak, CLIFE-1)]
-        [TestCase(Strength.Normal, CLIFE-2)]
-        [TestCase(Strength.Strong, CLIFE-4)]
-        public void GetAttackedCheck(Strength str,int expectedLife)
+        [TestCase(Strength.None, CLIFE, State.Interrupted)]
+        [TestCase(Strength.Weak, CLIFE - 1, State.Interrupted)]
+        [TestCase(Strength.Normal, CLIFE - 2, State.Interrupted)]
+        [TestCase(Strength.Strong, CLIFE - 4, State.Interrupted)]
+        public void GetAttackedCheck(Strength str,int expectedLife, State expectedState)
         {
             _warrior.GetAttacked(str);
-            Assert.AreEqual(expectedLife,_warrior.Check().Life);
-
+            Assert.AreEqual(expectedLife,_warrior.CheckMe().Life);
+            Assert.AreEqual(expectedState, _warrior.CheckMe().State);
         }
 
         [Test]
@@ -57,17 +61,27 @@ namespace Business.Tests
         {
             _warrior.Defend(1);
             _warrior.GetAttacked(str);
-            Assert.AreEqual(expectedLife, _warrior.Check().Life);
+            Assert.AreEqual(expectedLife, _warrior.CheckMe().Life);
         }
 
         [Test]
-        [TestCase(0, CLIFE+1)]
+        [TestCase(0, CLIFE + 1)]
         [TestCase(1, CLIFE + 1)]
-        [TestCase(3, CLIFE + 4)]
+        [TestCase(3, CLIFE + 3)]
         public void TestRest(int time, int expectation)
         {
             _warrior.Rest(time);
-            Assert.AreEqual(expectation, _warrior.Check().Life);
+            Assert.AreEqual(expectation, _warrior.CheckMe().Life);
+        }
+
+        [Test]
+        [TestCase(State.Interrupted)]
+
+        public void TestInterrupt(State expectedState)
+        {
+            _warrior.Interrupt();
+            Console.WriteLine(_warrior.Check().State);
+            Assert.AreEqual(expectedState,_warrior.CheckMe().State);
         }
     }
 }

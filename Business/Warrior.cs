@@ -27,7 +27,6 @@ namespace Business
             _logger = LogManager.GetLogger(typeof (Warrior));
 
             WarriorState = new WarriorState{Life = life};
-           // _strategy = strategy;
             _strategy = _strategy == null ? new List<Command>() : strategy;
         }
 
@@ -38,23 +37,20 @@ namespace Business
 
         public void FightMe()
         {
-           // if (_strategy.Count == 0) return;
+            if (_strategy.Count == 0) return;
             int it = 0;
-            //Console.WriteLine(_strategy.Count);
-            //while (WarriorState.State != State.Dead && _enemy.WarriorState.State != State.Dead )
-            while (it<5)
+            while (WarriorState.State != State.Dead && _enemy.WarriorState.State != State.Dead )
             {
                 SetCommand(_strategy[it++ % _strategy.Count]);
-                if (WarriorState.Life < 0 )
+                if (WarriorState.Life <= 0 )
                 {
                     WarriorState.State = State.Dead;
                 }
-                if (_enemy.WarriorState.Life < 0)
+                if (_enemy.WarriorState.Life <= 0)
                 {
                     WarriorState.State = State.Dead;
                     IWon();
                 }
-              // Console.WriteLine(_strategy.Count);
             }
         }
 
@@ -115,7 +111,7 @@ namespace Business
             }
             else
             {
-                WarriorState.Life += (int)time;
+                WarriorState.Life += time;
                 _logger.Info("I healed successfully!");
             }
             _timeMachine.Reset(this);
@@ -130,12 +126,20 @@ namespace Business
             return _enemy.WarriorState;
         }
 
+        public WarriorState CheckMe()
+        {
+            _logger.Info("Checking current enemy state and life.");
+            _logger.Info("Enemy state is " + WarriorState.State + " and Life is " + WarriorState.Life);
+            _timeMachine.Reset(this);
+            return WarriorState;
+        }
+
         private void IWon()
         {
             _logger.Info("I have won the battle!");
         }
 
-        private void Interrupt()
+        public void Interrupt()
         {
             WarriorState.State = State.Interrupted;
             _logger.Info("Enemy got interrupted!");

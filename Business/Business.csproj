@@ -50,6 +50,7 @@
     <Compile Include="Enums\State.cs" />
     <Compile Include="ITimeMachine.cs" />
     <Compile Include="Enums\Strength.cs" />
+    <Compile Include="Strategies.cs" />
     <Compile Include="TimeMachine.cs" />
     <Compile Include="Warrior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
