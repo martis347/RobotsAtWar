@@ -48,7 +48,6 @@ namespace Business
                 }
                 if (_enemy.WarriorState.Life <= 0)
                 {
-                    WarriorState.State = State.Dead;
                     IWon();
                 }
             }
@@ -66,6 +65,7 @@ namespace Business
             }
             _enemy.GetAttacked(str);
             _timeMachine.Reset(this);
+            //Pataisyt reset
         }
 
         public void GetAttacked(Strength str)
