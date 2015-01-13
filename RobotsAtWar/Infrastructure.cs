@@ -7,11 +7,11 @@ using Topshelf;
 
 namespace RobotsAtWar
 {
-    class Infrastructure
+    internal class Infrastructure
     {
         private static ILog _infrastructureLogger;
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             _infrastructureLogger = LogManager.GetLogger(typeof(Infrastructure));
             XmlConfigurator.Configure(new FileInfo("..\\..\\App.config"));
@@ -21,13 +21,12 @@ namespace RobotsAtWar
 
             HostFactory.Run(config =>
             {
-
                 _infrastructureLogger.Info("Attempting to start service");
-                config.Service<Battlefield>(svc =>
+                config.Service<HttpApiService>(svc =>
                 {
-                    svc.ConstructUsing(s => new Battlefield());
-                    svc.WhenStarted(s => s.Fight());
-                    svc.WhenStopped(s => s.Stop());
+                    svc.ConstructUsing(name => new HttpApiService(new Uri("http://localhost:1234")));
+                    svc.WhenStarted(tc => tc.Start());
+                    svc.WhenStopped(tc => tc.Stop());
                 });
 
 
