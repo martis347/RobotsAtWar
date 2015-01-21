@@ -27,13 +27,21 @@ namespace Business
             WarriorState = new WarriorState{Life = life};
             _strategy = _strategy == null ? new List<Command>() : strategy;
             _opponent = opponent;
+            
         }
 
 
         public void ExecuteNextCommand()
         {
+            if (_strategy.Count == 0)
+            {
+                _logger.Warn("0 strategies");
+                return;
+            }
             int index = 0;
             ExecuteCommand(_strategy[index++ % _strategy.Count]);
+            
+
         }
 
         public void Attack(Strength str)
@@ -52,6 +60,22 @@ namespace Business
         public void GetAttacked(int str)
         {
             var damage = (int) str;
+            //if (str == Strength.Strong)
+            //    damage = 4;
+
+            if (WarriorState.State == State.Defending)
+                _logger.Info("Enemy has been attacked while defending! 0 Life points lost");
+            else
+            {
+                WarriorState.Life -= damage;
+                _logger.Info("Enemy has lost " + damage + " life points!");
+                Interrupt();
+            }
+
+        }
+        public void GetAttacked(string str)
+        {
+            int damage = 1;
             //if (str == Strength.Strong)
             //    damage = 4;
 
