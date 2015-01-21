@@ -17,7 +17,7 @@ namespace Business
 
         private readonly List<Command> _strategy = new List<Command>();
 
-        public Warrior(ITimeMachine timeMachine, int life = 100, List<Command> strategy = null)
+        public Warrior(ITimeMachine timeMachine, Opponent opponent, int life = 100, List<Command> strategy = null)
         {
             if (timeMachine == null) throw new ArgumentNullException("timeMachine");
             _timeMachine = timeMachine;
@@ -26,22 +26,14 @@ namespace Business
 
             WarriorState = new WarriorState{Life = life};
             _strategy = _strategy == null ? new List<Command>() : strategy;
+            _opponent = opponent;
         }
 
 
-        public void FightMe()
+        public void ExecuteNextCommand()
         {
-            if (_strategy.Count == 0) return;
-            int it = 0;
-            while (WarriorState.State != State.Dead )
-            {
-                SetCommand(_strategy[it++ % _strategy.Count]);
-                if (WarriorState.Life <= 0 )
-                {
-                    WarriorState.State = State.Dead;
-                }
-                
-            }
+            int index = 0;
+            ExecuteCommand(_strategy[index++ % _strategy.Count]);
         }
 
         public void Attack(Strength str)
@@ -120,9 +112,9 @@ namespace Business
             return WarriorState;
         }
 
-        private void IWon()
+        public bool IsAlive()
         {
-            _logger.Info("I have won the battle!");
+            return (WarriorState.Life > 0);
         }
 
         public void Interrupt()
@@ -131,7 +123,7 @@ namespace Business
             _logger.Info("Enemy got interrupted!");
         }
 
-        private void SetCommand(Command command)
+        private void ExecuteCommand(Command command)
         {
             switch (command.Action)
             {
