@@ -8,9 +8,7 @@ namespace Business
 {
     public class Warrior : IResetable
     {
-
-        private Warrior _enemy;
-
+        private Opponent _opponent;
         private readonly ITimeMachine _timeMachine;
 
         private WarriorState WarriorState { get;  set; }
@@ -30,28 +28,19 @@ namespace Business
             _strategy = _strategy == null ? new List<Command>() : strategy;
         }
 
-        public void SetEnemy(Warrior enemyWarrior)
-        {
-            _enemy = enemyWarrior;
-        }
 
         public void FightMe()
         {
             if (_strategy.Count == 0) return;
             int it = 0;
-            while (WarriorState.State != State.Dead && _enemy.WarriorState.State != State.Dead )
+            while (WarriorState.State != State.Dead )
             {
                 SetCommand(_strategy[it++ % _strategy.Count]);
                 if (WarriorState.Life <= 0 )
                 {
                     WarriorState.State = State.Dead;
-                    Stop
                 }
-                if (_enemy.WarriorState.Life <= 0)
-                {
-                    IWon();
-                    _enemy.WarriorState.State = State.Dead;
-                }
+                
             }
         }
 
@@ -59,22 +48,20 @@ namespace Business
         {
             WarriorState.State = State.Attacking;
             _logger.Info("I'm attacking");
-            _timeMachine.Sleep(((int)str) * 1000 );
+            _timeMachine.Sleep(((int)str) * 1000 ,WarriorState,this);
             if (WarriorState.State == State.Interrupted)
             {
                 _logger.Info("My attack has been interrupted!");
                 return;
             }
-            _enemy.GetAttacked(str);
-            _timeMachine.Reset(this);
-            //Pataisyt reset
+            _opponent.GetAttacked(str);
         }
 
-        public void GetAttacked(Strength str)
+        public void GetAttacked(int str)
         {
             var damage = (int) str;
-            if (str == Strength.Strong)
-                damage = 4;
+            //if (str == Strength.Strong)
+            //    damage = 4;
 
             if (WarriorState.State == State.Defending)
                 _logger.Info("Enemy has been attacked while defending! 0 Life points lost");
@@ -96,8 +83,7 @@ namespace Business
             }
             _logger.Info("I'm entering defence state!");
             WarriorState.State = State.Defending;
-            _timeMachine.Sleep(time * 1000 );
-            _timeMachine.Reset(this);
+            _timeMachine.Sleep(time * 1000, WarriorState, this);
         }
 
         public void Rest(int time)
@@ -106,7 +92,7 @@ namespace Business
 
             _logger.Info(String.Format("I'm starting to rest for {0}s.", time));
             WarriorState.State = State.Resting;
-            _timeMachine.Sleep(time * 1000 );
+            _timeMachine.Sleep(time * 1000, WarriorState, this);
             if (WarriorState.State == State.Interrupted)
             {
                 _logger.Info("My healing was interrupted.");
@@ -116,23 +102,21 @@ namespace Business
                 WarriorState.Life += time;
                 _logger.Info("I healed successfully!");
             }
-            _timeMachine.Reset(this);
         }
 
         public WarriorState Check()
         {
             _logger.Info("Checking current enemy state and life.");
-            _logger.Info("Enemy state is "+_enemy.WarriorState.State+" and Life is "+_enemy.WarriorState.Life);
-           // _timeMachine.Sleep(200, this);
-            _timeMachine.Reset(this);
-            return _enemy.WarriorState;
+           // _logger.Info("Enemy state is "+_enemy.WarriorState.State+" and Life is "+_enemy.WarriorState.Life);
+            _timeMachine.Sleep(200, WarriorState, this);
+           // return _enemy.WarriorState;
+            return WarriorState;
         }
 
         public WarriorState CheckMe()
         {
             _logger.Info("Checking current enemy state and life.");
             _logger.Info("Enemy state is " + WarriorState.State + " and Life is " + WarriorState.Life);
-            _timeMachine.Reset(this);
             return WarriorState;
         }
 

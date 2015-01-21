@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Business;
+using Business.Tools;
 using log4net;
 using log4net.Config;
 using Topshelf;
@@ -24,7 +25,7 @@ namespace RobotsAtWar
                 _infrastructureLogger.Info("Attempting to start service");
                 config.Service<HttpApiService>(svc =>
                 {
-                    svc.ConstructUsing(name => new HttpApiService(new Uri("http://localhost:1234")));
+                    svc.ConstructUsing(name => new HttpApiService(new Uri(ConfigSettings.ReadSetting("MyUrl"))));
                     svc.WhenStarted(tc => tc.Start());
                     svc.WhenStopped(tc => tc.Stop());
                 });

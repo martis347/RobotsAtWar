@@ -27,7 +27,6 @@ namespace Business.Tests
         {
             _warrior = new Warrior(new FakeTimeMachine(), 100);
             _warrior2 = new Warrior(new FakeTimeMachine(), 100);
-            _warrior.SetEnemy(_warrior2);
         }
         [Test]
         [TestCase(Strength.None, State.Attacking, State.Attacking, State.Interrupted)]
@@ -47,7 +46,7 @@ namespace Business.Tests
         [TestCase(Strength.Strong, CLIFE - 4, State.Interrupted)]
         public void GetAttackedCheck(Strength str,int expectedLife, State expectedState)
         {
-            _warrior.GetAttacked(str);
+           // _warrior.GetAttacked(str);
             Assert.AreEqual(expectedLife,_warrior.CheckMe().Life);
             Assert.AreEqual(expectedState, _warrior.CheckMe().State);
         }
@@ -60,7 +59,7 @@ namespace Business.Tests
         public void DefenceCheck(Strength str,int expectedLife)
         {
             _warrior.Defend(1);
-            _warrior.GetAttacked(str);
+           // _warrior.GetAttacked(str);
             Assert.AreEqual(expectedLife, _warrior.CheckMe().Life);
         }
 

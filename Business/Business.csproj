@@ -34,6 +34,7 @@
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,15 +51,19 @@
     <Compile Include="Enums\State.cs" />
     <Compile Include="ITimeMachine.cs" />
     <Compile Include="Enums\Strength.cs" />
+    <Compile Include="Opponent.cs" />
     <Compile Include="Strategies.cs" />
     <Compile Include="TimeMachine.cs" />
+    <Compile Include="Tools\ConfigSettings.cs" />
     <Compile Include="Warrior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WarriorState.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

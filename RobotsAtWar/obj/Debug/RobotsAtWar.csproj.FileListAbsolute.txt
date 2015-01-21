@@ -23,13 +23,22 @@ C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.cspr
 C:\Users\Matas\Dropbox\Adform\RAW\RobotsAtWar\bin\Debug\RobotsAtWar.exe.config
 C:\Users\Matas\Dropbox\Adform\RAW\RobotsAtWar\obj\Debug\RobotsAtWar.exe
 C:\Users\Matas\Dropbox\Adform\RAW\RobotsAtWar\obj\Debug\RobotsAtWar.pdb
-C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\WebAPI.dll
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.SelfHost.dll
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.dll
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\WebAPI.pdb
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.SelfHost.xml
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.xml
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.Host.HttpListener.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.Hosting.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Owin.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.Owin.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.WebHost.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.Host.HttpListener.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.Hosting.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.Owin.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.WebHost.xml
