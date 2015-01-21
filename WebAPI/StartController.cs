@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Business;
 
@@ -10,34 +7,51 @@ namespace WebAPI
 {
     public class StartController : ApiController
     {
+        private Battlefield _batt = new Battlefield();
+        
 
-        private Battlefield battlefield;
+
+        private string value1, value2;
         // GET api/<controller>
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        public IEnumerable<string> Get(int id)
+        {
+            
+            return new [] { value1, value2 };
+
+        }
 
         // GET api/<controller>/5
-        public void  Get(string strategy)
-        {
-            battlefield.Fight();
-            Console.WriteLine(strategy);
-        }
-
-        //public void Get()
+        //public void Get([FromBody]string id)
         //{
-        //    Console.WriteLine("adasdasdasd");
+        //    //batt.Fight("asad");
+        //    Console.WriteLine(id);
+            
         //}
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Get()
         {
+            _batt.Fight("Aggressive");
+            Console.WriteLine( _batt.GiveWarr1().Check().Life);
         }
 
-        // PUT api/<controller>/5
+
+        public string Post(string id)
+        {
+            _batt.Fight("Aggresive");
+            Console.WriteLine(_batt.GiveWarr1().Check().Life);
+            Console.WriteLine(_batt.GiveWarr2().Check().Life);
+
+            return id;
+        }
+        //public string Post()
+        //{
+        //    //batt.Fight(val);
+        //    Console.WriteLine("dsfsdf");
+        //    return "sffgsf";
+        //}
+       
         public void Put(int id, [FromBody]string value)
         {
+            Console.WriteLine(id+value);
         }
 
         // DELETE api/<controller>/5

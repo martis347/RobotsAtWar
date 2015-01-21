@@ -45,10 +45,12 @@ namespace Business
                 if (WarriorState.Life <= 0 )
                 {
                     WarriorState.State = State.Dead;
+                    Stop
                 }
                 if (_enemy.WarriorState.Life <= 0)
                 {
                     IWon();
+                    _enemy.WarriorState.State = State.Dead;
                 }
             }
         }

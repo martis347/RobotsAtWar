@@ -21,7 +21,7 @@ public class HttpApiService
             address.ToString()));
         _config = new HttpSelfHostConfiguration(address);
         _config.Routes.MapHttpRoute("DefaultApi",
-            "api/{controller}/{strategy}",
+            "api/{controller}/{id}",
             new { id = RouteParameter.Optional }
         );
         _server = new HttpSelfHostServer(_config);
