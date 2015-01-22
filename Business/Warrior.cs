@@ -46,6 +46,7 @@ namespace Business
 
         public void Attack(Strength str)
         {
+            Console.WriteLine(WarriorState.Life);
             WarriorState.State = State.Attacking;
             _logger.Info("I'm attacking");
             _timeMachine.Sleep(((int)str) * 1000 ,WarriorState,this);
@@ -60,6 +61,7 @@ namespace Business
         public void GetAttacked(int str)
         {
             var damage = (int) str;
+            Console.WriteLine(WarriorState.Life);
             
             if (WarriorState.State == State.Defending)
                 _logger.Info("Enemy has been attacked while defending! 0 Life points lost");
@@ -120,6 +122,11 @@ namespace Business
         public bool IsAlive()
         {
             return (WarriorState.Life > 0);
+        }
+
+        public void IWon()
+        {
+            Battlefield.stop = true;
         }
 
         public void Interrupt()
