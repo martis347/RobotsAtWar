@@ -8,7 +8,7 @@ namespace Business
 {
     public class Warrior : IResetable
     {
-        private Opponent _opponent;
+        private readonly Opponent _opponent;
         private readonly ITimeMachine _timeMachine;
 
         private WarriorState WarriorState { get;  set; }
@@ -46,7 +46,6 @@ namespace Business
 
         public void Attack(Strength str)
         {
-            Console.WriteLine(WarriorState.Life);
             WarriorState.State = State.Attacking;
             _logger.Info("I'm attacking");
             _timeMachine.Sleep(((int)str) * 1000 ,WarriorState,this);
@@ -61,7 +60,6 @@ namespace Business
         public void GetAttacked(int str)
         {
             var damage = (int) str;
-            Console.WriteLine(WarriorState.Life);
             
             if (WarriorState.State == State.Defending)
                 _logger.Info("Enemy has been attacked while defending! 0 Life points lost");
@@ -75,7 +73,7 @@ namespace Business
 
         public void Defend(int time)
         {
-            if (time < 1)
+            if (time < 1 && time > 100)
             {
                 _logger.Info("Invalid time!");
                 return;
@@ -103,21 +101,37 @@ namespace Business
             }
         }
 
-        public WarriorState Check()
+        public void CheckLife()
         {
             _logger.Info("Checking current enemy state and life.");
-           // _logger.Info("Enemy state is "+_enemy.WarriorState.State+" and Life is "+_enemy.WarriorState.Life);
             _timeMachine.Sleep(200, WarriorState, this);
-           // return _enemy.WarriorState;
-            return WarriorState;
+            Console.WriteLine("Enemy has: " + _opponent.GetLife() + " lives");
         }
-
+        public int GiveLife()
+        {
+            //_logger.Info("Checking current enemy state and life.");
+            _timeMachine.Sleep(200, WarriorState, this);
+            return WarriorState.Life;
+        }
+        public void CheckState()
+        {
+            _logger.Info("Checking current enemy state and life.");
+            _timeMachine.Sleep(200, WarriorState, this);
+            _opponent.GetState();
+        }
         public WarriorState CheckMe()
         {
             _logger.Info("Checking current enemy state and life.");
-            _logger.Info("Enemy state is " + WarriorState.State + " and Life is " + WarriorState.Life);
+            _timeMachine.Sleep(200, WarriorState, this);
             return WarriorState;
         }
+
+        //public WarriorState Check()
+        //{
+        //    _logger.Info("Checking current enemy state and life.");
+        //    _timeMachine.Sleep(200, WarriorState, this);
+        //    return WarriorState;
+        //}
 
         public bool IsAlive()
         {
@@ -149,7 +163,7 @@ namespace Business
                     Rest(command.Time);
                     break;
                 case Action.Check:
-                    Check();
+                    CheckLife();
                     break;
             }
         }
