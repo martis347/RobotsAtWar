@@ -1,44 +1,30 @@
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.exe.config
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.exe
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.pdb
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\log4net.dll
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Topshelf.dll
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\log4net.xml
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.csprojResolveAssemblyReference.cache
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.exe
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.pdb
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Business.dll
-c:\users\martynas\documents\visual studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Business.pdb
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.exe.config
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.exe
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.pdb
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.exe
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.pdb
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\Business.dll
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\log4net.dll
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\Topshelf.dll
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\Business.pdb
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\bin\Debug\log4net.xml
-C:\Users\Matas\Dropbox\Adform\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.csprojResolveAssemblyReference.cache
-C:\Users\Matas\Dropbox\Adform\RAW\RobotsAtWar\bin\Debug\RobotsAtWar.exe.config
-C:\Users\Matas\Dropbox\Adform\RAW\RobotsAtWar\obj\Debug\RobotsAtWar.exe
-C:\Users\Matas\Dropbox\Adform\RAW\RobotsAtWar\obj\Debug\RobotsAtWar.pdb
-C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.SelfHost.dll
-C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.dll
-C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Net.Http.Formatting.dll
-C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.SelfHost.xml
-C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.xml
-C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Net.Http.Formatting.xml
-C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.exe.config
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.exe
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.pdb
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.exe
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\RobotsAtWar.pdb
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Business.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\log4net.dll
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.dll
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.Host.HttpListener.dll
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.Hosting.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Owin.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.dll
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.Owin.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.SelfHost.dll
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.WebHost.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Topshelf.dll
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Business.pdb
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\log4net.xml
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.xml
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.Host.HttpListener.xml
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Microsoft.Owin.Hosting.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.xml
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.Owin.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.SelfHost.xml
 C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\bin\Debug\System.Web.Http.WebHost.xml
+C:\Users\Martynas\Documents\Visual Studio 2012\Projects\RobotsAtWar\RobotsAtWar\obj\Debug\RobotsAtWar.csprojResolveAssemblyReference.cache

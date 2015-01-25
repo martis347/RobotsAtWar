@@ -91,7 +91,7 @@
     <Compile Include="Controllers\CheckController.cs" />
     <Compile Include="Controllers\DeathController.cs" />
     <Compile Include="HttpApiService.cs" />
-    <Compile Include="Infrastructure.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
