@@ -53,8 +53,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business\RobotsAtWar.Client.csproj">
-      <Project>{69d69f24-9701-4ecb-b359-1fb819ac04a6}</Project>
+    <ProjectReference Include="..\RobotsAtWar.Client\RobotsAtWar.Client.csproj">
+      <Project>{69D69F24-9701-4ECB-B359-1FB819AC04A6}</Project>
       <Name>RobotsAtWar.Client</Name>
     </ProjectReference>
   </ItemGroup>

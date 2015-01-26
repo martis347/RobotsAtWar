@@ -82,10 +82,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business\RobotsAtWar.Client.csproj">
-      <Project>{69D69F24-9701-4ECB-B359-1FB819AC04A6}</Project>
-      <Name>RobotsAtWar.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RobotsAtWar.Server\RobotsAtWar.Server.csproj">
       <Project>{B680B75B-0AF2-415D-B037-74A857A9D95E}</Project>
       <Name>RobotsAtWar.Server</Name>
