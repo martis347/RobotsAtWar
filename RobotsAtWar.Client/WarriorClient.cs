@@ -20,9 +20,11 @@ namespace RobotsAtWar.Client
             {
                 try
                 {
+
                     // TODO: move http logic to a wrapper class
                     var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Registration");
                     request.Timeout = 100000;
+
 
                     var data = Encoding.ASCII.GetBytes(warriorName);
 
@@ -45,12 +47,22 @@ namespace RobotsAtWar.Client
                 catch (Exception)
                 {
                     Console.WriteLine("Connecting now...");
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
+                    ClearCurrentConsoleLine(1, 0);
+
+                    
                 }
             }
 
         }
-
+        private static void ClearCurrentConsoleLine(int lineToClean, int lineToContinue)
+        {
+            Console.SetCursorPosition(0, Console.CursorTop - lineToClean);
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor + lineToContinue);
+        }
         //public DateTime GetBattleTime()
         //{
 
