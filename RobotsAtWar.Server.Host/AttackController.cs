@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using RobotsAtWar.Server.Enums;
 
@@ -13,8 +10,9 @@ namespace RobotsAtWar.Server.Host
         // POST api/<controller>
         public string Post([FromBody]string value)
         {
-            Console.WriteLine(value);
-            int power = Int32.Parse(value);
+            int power = value.ElementAt(0) - 48;
+            string name = value.Remove(0, 1);
+
             var str = Strength.None;
             switch (power)
             {
@@ -28,7 +26,8 @@ namespace RobotsAtWar.Server.Host
                     str = Strength.Weak;
                     break;
             }
-            BattleFieldSingleton.BattleField.Warrior1.Attack(Strength.None);
+            BattleFieldSingleton.BattleField._warriorByName[name].Attack(str);
+            
             return "You attacked";
         }
 

@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using RobotsAtWar.Server.Enums;
 
 
 namespace RobotsAtWar.Server
 {
     public class BattleField
     {
+       
 
-        private static Dictionary<string, Warrior> _warriorByName = new Dictionary<string, Warrior>();
+        public Dictionary<string, Warrior> _warriorByName = new Dictionary<string, Warrior>();
 
-        private TimeMachine _timeMachine;
+        private readonly TimeMachine _timeMachine = new TimeMachine();
 
         private DateTime _battleTime;
 
-        public Warrior Warrior1 = new Warrior("Warrior1");
- 
         public void RegisterWarrior(string warriorName)
         {
-            _warriorByName.Add(warriorName, new Warrior(warriorName));
+            _warriorByName[warriorName] = new Warrior(warriorName,_timeMachine);
+            _warriorByName.Add(warriorName, new Warrior(warriorName,_timeMachine));
 
             if (_warriorByName.Count == 1)
             {
@@ -36,7 +37,7 @@ namespace RobotsAtWar.Server
             return _warriorByName[warriorName];
         }
         
-        public  void WaitForWarriors()
+        public void WaitForWarriors()
         {
             Console.WriteLine("Waiting for players");
             while (_warriorByName.Count < 1)
@@ -56,7 +57,7 @@ namespace RobotsAtWar.Server
             ClearCurrentConsoleLine(2, 2);
         }
 
-        private  void ClearCurrentConsoleLine(int lineToClean, int lineToContinue)
+        private static void ClearCurrentConsoleLine(int lineToClean, int lineToContinue)
         {
             Console.SetCursorPosition(0, Console.CursorTop - lineToClean);
             int currentLineCursor = Console.CursorTop;
@@ -69,6 +70,9 @@ namespace RobotsAtWar.Server
         public void Start()
         {
             
+
+
+
         }
     }
 
