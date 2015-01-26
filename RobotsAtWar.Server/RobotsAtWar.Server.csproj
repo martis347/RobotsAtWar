@@ -45,12 +45,16 @@
   <ItemGroup>
     <Compile Include="BattleField.cs" />
     <Compile Include="BattleFieldSingleton.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="FakeTimeMachine.cs" />
+    <Compile Include="ITimeMachine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeMachine.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business\Business.csproj">
+    <ProjectReference Include="..\Business\RobotsAtWar.Client.csproj">
       <Project>{69D69F24-9701-4ECB-B359-1FB819AC04A6}</Project>
-      <Name>Business</Name>
+      <Name>RobotsAtWar.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

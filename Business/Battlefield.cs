@@ -32,7 +32,7 @@ namespace Business
 
         private void StartFight()
         {
-            while (Warrior1.IsAlive() && !stop)
+            while (Warrior1.IsAlive())
             {
                 Warrior1.ExecuteNextCommand();
             }

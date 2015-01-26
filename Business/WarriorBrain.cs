@@ -36,7 +36,7 @@ namespace Business
             int nextActionNumber = 0;
             while (true)
             {
-                if (WarriorClient.Dead)
+                if (_warriorClient.Dead)
                 {
                     Environment.Exit(0);
                 }
@@ -61,19 +61,19 @@ namespace Business
             switch (command.Action)
             {
                 case Action.Attack:
-                    WarriorClient.Attack(command.Power);
+                    _warriorClient.Attack(command.Power);
                     break;
                 case Action.Defend:
-                    WarriorClient.Defend(command.Time);
+                    _warriorClient.Defend(command.Time);
                     break;
                 case Action.Rest:
-                    WarriorClient.Rest(command.Time);
+                    _warriorClient.Rest(command.Time);
                     break;
                 case Action.Check:
-                    WarriorClient.Check();
+                    _warriorClient.Check();
                     break;
                 default:
-                    WarriorClient.DoNothing();
+                    _warriorClient.DoNothing();
                     break;
             }
         }
@@ -83,7 +83,7 @@ namespace Business
     {
         private const string ServerUrl = "ServerUrl";
 
-        public static bool Dead = false;
+        public bool Dead = false;
         public void Register(string warriorName)
         {
             while (true)
@@ -127,7 +127,7 @@ namespace Business
 
         //}
 
-        public static void Attack(Strength strength)
+        public  void Attack(Strength strength)
         {
             int power = 0;
             switch (strength)
@@ -164,22 +164,22 @@ namespace Business
             Console.WriteLine("Response from server:" + responseString);
         }
 
-        public static void Defend(int time)
+        public  void Defend(int time)
         {
             
         }
 
-        public static void Rest(int time)
+        public  void Rest(int time)
         {
             
         }
 
-        public static void Check()
+        public  void Check()
         {
             
         }
 
-        public static void DoNothing()
+        public  void DoNothing()
         {
 
         }

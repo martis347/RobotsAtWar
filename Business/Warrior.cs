@@ -126,10 +126,7 @@ namespace Business
             return (WarriorState.Life > 0);
         }
 
-        public void IWon()
-        {
-            Battlefield.stop = true;
-        }
+        
 
         public void Interrupt()
         {

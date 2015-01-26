@@ -15,7 +15,7 @@ namespace RobotsAtWar.Controllers
         // GET api/<controller>/5
         public void Get()
         {
-            Battlefield.Warrior1.IWon();
+          //  Battlefield.Warrior1.IWon();
         }
 
         // POST api/<controller>

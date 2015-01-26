@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
+using Business;
 
 namespace RobotsAtWar
 {
@@ -31,10 +32,12 @@ namespace RobotsAtWar
 
         public void Start()
         {
+            var me = new WarriorClient();
+
             EventLog.WriteEntry(EventSource, "Opening HttpApiService server.");
             _server.OpenAsync();
 
-            //HttpRequests.Connect("Warrior One");
+            me.Register("Warrior One");
 
         }
 

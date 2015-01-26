@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotsAtWar.Client.Host", "RobotsAtWar\RobotsAtWar.Client.Host.csproj", "{B6A25F68-5362-406B-AAAB-45AA40CADED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{69D69F24-9701-4ECB-B359-1FB819AC04A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotsAtWar.Client", "Business\RobotsAtWar.Client.csproj", "{69D69F24-9701-4ECB-B359-1FB819AC04A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Tests", "Business.tests\Business.Tests.csproj", "{DFF3E30D-15AF-461F-A64E-87B99BA96317}"
 EndProject

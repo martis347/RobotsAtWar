@@ -75,7 +75,7 @@ namespace RobotsAtWar.Server
 
         private static ILog _logger;
 
-        public Warrior(string warriorName)
+        public Warrior(string warriorName,ITimeMachine timeMachine, Opponent opponent, int life = 100, List<Command> strategy = null)
         {
             _logger = LogManager.GetLogger(typeof(Warrior));
 

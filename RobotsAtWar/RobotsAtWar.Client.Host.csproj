@@ -101,9 +101,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business\Business.csproj">
+    <ProjectReference Include="..\Business\RobotsAtWar.Client.csproj">
       <Project>{69D69F24-9701-4ECB-B359-1FB819AC04A6}</Project>
-      <Name>Business</Name>
+      <Name>RobotsAtWar.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
