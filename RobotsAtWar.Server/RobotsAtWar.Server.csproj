@@ -46,10 +46,15 @@
     <Compile Include="BattleField.cs" />
     <Compile Include="BattleFieldSingleton.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="Enums\Action.cs" />
+    <Compile Include="Enums\State.cs" />
+    <Compile Include="Enums\Strength.cs" />
     <Compile Include="FakeTimeMachine.cs" />
     <Compile Include="ITimeMachine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeMachine.cs" />
+    <Compile Include="Warrior.cs" />
+    <Compile Include="WarriorState.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business\RobotsAtWar.Client.csproj">

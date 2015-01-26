@@ -1,4 +1,4 @@
-﻿namespace Business
+﻿namespace RobotsAtWar.Server
 {
     public interface ITimeMachine
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Business.Enums;
+using RobotsAtWar.Server.Enums;
 
 namespace RobotsAtWar.Server.Host
 {
@@ -27,7 +27,7 @@ namespace RobotsAtWar.Server.Host
                     str = Strength.Weak;
                     break;
             }
-            Warrior.Attack(str);
+            BattleFieldSingleton.BattleField.
         }
 
     }

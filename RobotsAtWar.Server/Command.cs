@@ -1,7 +1,7 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-using Business.Enums;
+﻿using Action = RobotsAtWar.Server.Enums.Action;
+using Strength = RobotsAtWar.Server.Enums.Strength;
 
-namespace Business
+namespace RobotsAtWar.Server
 {
     public class Command
     {

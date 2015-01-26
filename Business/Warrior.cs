@@ -6,10 +6,10 @@ using Action = Business.Enums.Action;
 
 namespace Business
 {
-    public class Warrior : IResetable
+    public class Warrior //: IResetable
     {
         private Opponent _opponent;
-        private readonly ITimeMachine _timeMachine;
+       // private readonly ITimeMachine _timeMachine;
 
         private WarriorState WarriorState { get;  set; }
 
@@ -17,18 +17,18 @@ namespace Business
 
         private readonly List<Command> _strategy = new List<Command>();
 
-        public Warrior(ITimeMachine timeMachine, Opponent opponent, int life = 100, List<Command> strategy = null)
-        {
-            if (timeMachine == null) throw new ArgumentNullException("timeMachine");
-            _timeMachine = timeMachine;
+        //public Warrior(ITimeMachine timeMachine, Opponent opponent, int life = 100, List<Command> strategy = null)
+        //{
+        //    if (timeMachine == null) throw new ArgumentNullException("timeMachine");
+        //    _timeMachine = timeMachine;
 
-            _logger = LogManager.GetLogger(typeof (Warrior));
+        //    _logger = LogManager.GetLogger(typeof (Warrior));
 
-            WarriorState = new WarriorState{Life = life};
-            _strategy = _strategy == null ? new List<Command>() : strategy;
-            _opponent = opponent;
+        //    WarriorState = new WarriorState{Life = life};
+        //    _strategy = _strategy == null ? new List<Command>() : strategy;
+        //    _opponent = opponent;
             
-        }
+        //}
 
 
         public void ExecuteNextCommand()
@@ -49,7 +49,7 @@ namespace Business
             Console.WriteLine(WarriorState.Life);
             WarriorState.State = State.Attacking;
             _logger.Info("I'm attacking");
-            _timeMachine.Sleep(((int)str) * 1000 ,WarriorState,this);
+           // _timeMachine.Sleep(((int)str) * 1000 ,WarriorState,this);
             if (WarriorState.State == State.Interrupted)
             {
                 _logger.Info("My attack has been interrupted!");
@@ -82,7 +82,7 @@ namespace Business
             }
             _logger.Info("I'm entering defence state!");
             WarriorState.State = State.Defending;
-            _timeMachine.Sleep(time * 1000, WarriorState, this);
+          //  _timeMachine.Sleep(time * 1000, WarriorState, this);
         }
 
         public void Rest(int time)
@@ -91,7 +91,7 @@ namespace Business
 
             _logger.Info(String.Format("I'm starting to rest for {0}s.", time));
             WarriorState.State = State.Resting;
-            _timeMachine.Sleep(time * 1000, WarriorState, this);
+          //  _timeMachine.Sleep(time * 1000, WarriorState, this);
             if (WarriorState.State == State.Interrupted)
             {
                 _logger.Info("My healing was interrupted.");
@@ -107,7 +107,7 @@ namespace Business
         {
             _logger.Info("Checking current enemy state and life.");
             // _logger.Info("Enemy state is "+_enemy.WarriorState.State+" and Life is "+_enemy.WarriorState.Life);
-            _timeMachine.Sleep(200, WarriorState, this);
+          //  _timeMachine.Sleep(200, WarriorState, this);
             // return _enemy.WarriorState;
             //Console.WriteLine(_opponent.Check().Life + " " + _opponent.Check().State + " This is from get");
             Console.WriteLine(_opponent.Check());

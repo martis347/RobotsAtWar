@@ -1,7 +1,7 @@
 ﻿using System.Threading;
-using Business.Enums;
+using State = RobotsAtWar.Server.Enums.State;
 
-namespace Business
+namespace RobotsAtWar.Server
 {
     public class TimeMachine : ITimeMachine
     {
