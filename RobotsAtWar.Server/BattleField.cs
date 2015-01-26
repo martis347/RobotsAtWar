@@ -9,15 +9,17 @@ namespace RobotsAtWar.Server
     public class BattleField
     {
 
-        private static Dictionary<string, Warrior> _warriorByName = new Dictionary<string, Warrior>(); 
+        private static Dictionary<string, Warrior> _warriorByName = new Dictionary<string, Warrior>();
+
+        private TimeMachine _timeMachine;
 
         private DateTime _battleTime;
 
-        public static Warrior Warrior1 = new Warrior("Name",_time);
+        public Warrior Warrior1;
  
         public void RegisterWarrior(string warriorName)
         {
-            _warriorByName.Add(warriorName, new Warrior(warriorName));
+            _warriorByName.Add(warriorName, new Warrior(warriorName,_timeMachine));
 
             if (_warriorByName.Count == 1)
             {
