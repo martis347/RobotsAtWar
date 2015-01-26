@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
+using RobotsAtWar.Server.Enums;
 
 namespace RobotsAtWar.Server.Host
 {
@@ -33,10 +34,10 @@ namespace RobotsAtWar.Server.Host
         {
             EventLog.WriteEntry(EventSource, "Opening HttpApiService server.");
             _server.OpenAsync();
+            BattleField battleField = new BattleField();
 
-            BattleField.WaitForWarriors();
+            battleField.WaitForWarriors();
             Console.WriteLine("Both connected");
-           // BattleField.Start();
         }
 
         public void Stop()

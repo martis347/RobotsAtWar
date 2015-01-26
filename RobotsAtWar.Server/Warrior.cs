@@ -1,5 +1,6 @@
 ﻿using System;
 using log4net;
+using log4net.Core;
 using RobotsAtWar.Server.Enums;
 
 namespace RobotsAtWar.Server
@@ -10,7 +11,7 @@ namespace RobotsAtWar.Server
 
         private static ILog _logger;
 
-        private readonly ITimeMachine _timeMachine;
+        private readonly ITimeMachine _timeMachine = new TimeMachine();
 
         private WarriorState WarriorState = new WarriorState(); 
 
@@ -22,15 +23,15 @@ namespace RobotsAtWar.Server
             if (timeMachine == null) throw new ArgumentNullException("timeMachine");
             _timeMachine = timeMachine;
 
-            _logger = LogManager.GetLogger(typeof(Warrior));
-
             WarriorState = new WarriorState { Life = life };
 
         }
 
         public Warrior(string warriorName)
         {
-            _warriorName = warriorName;            
+            _warriorName = warriorName;
+            _logger = LogManager.GetLogger(typeof(Warrior));
+        
         }
 
         public void Attack(Strength str)

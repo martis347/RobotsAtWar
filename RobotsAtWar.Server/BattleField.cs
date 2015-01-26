@@ -36,7 +36,7 @@ namespace RobotsAtWar.Server
             return _warriorByName[warriorName];
         }
         
-        public static void WaitForWarriors()
+        public  void WaitForWarriors()
         {
             Console.WriteLine("Waiting for players");
             while (_warriorByName.Count < 1)
@@ -56,7 +56,7 @@ namespace RobotsAtWar.Server
             ClearCurrentConsoleLine(2, 2);
         }
 
-        private static void ClearCurrentConsoleLine(int lineToClean, int lineToContinue)
+        private  void ClearCurrentConsoleLine(int lineToClean, int lineToContinue)
         {
             Console.SetCursorPosition(0, Console.CursorTop - lineToClean);
             int currentLineCursor = Console.CursorTop;
@@ -66,7 +66,7 @@ namespace RobotsAtWar.Server
         }
 
 
-        public static void Start()
+        public void Start()
         {
             
         }

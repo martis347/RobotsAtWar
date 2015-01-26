@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using log4net;
 using log4net.Config;
 using RobotsAtWar.Server.Host.Tools;
 using Topshelf;
@@ -8,8 +9,12 @@ namespace RobotsAtWar.Server.Host
 {
     class Program
     {
+        private static ILog _logger;
+
         static void Main()
         {
+            _logger = LogManager.GetLogger(typeof(Program));
+
             XmlConfigurator.Configure(new FileInfo("..\\..\\App.config"));
 
             HostFactory.Run(x =>
