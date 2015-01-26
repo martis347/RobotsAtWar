@@ -16,7 +16,8 @@ namespace RobotsAtWar.Client
 
         public static void Register(string warriorName)
         {
-            while (true)
+            bool retry = true;
+            while (retry)
             {
                 try
                 {
@@ -25,8 +26,7 @@ namespace RobotsAtWar.Client
                     var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Registration");
                     request.Timeout = 100000;
 
-
-                    var data = Encoding.ASCII.GetBytes(warriorName);
+                    var data = Encoding.ASCII.GetBytes("="+warriorName);
 
                     request.Method = "POST";
                     request.ContentType = "application/x-www-form-urlencoded";
@@ -43,12 +43,14 @@ namespace RobotsAtWar.Client
                     var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
                     Console.WriteLine("Response from server:" + responseString);
+                    retry = false;
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Connecting now...");
-                    Thread.Sleep(500);
                     ClearCurrentConsoleLine(1, 0);
+                    Console.WriteLine("Connecting now...");
+                   // Thread.Sleep(500);
+                    
 
                     
                 }

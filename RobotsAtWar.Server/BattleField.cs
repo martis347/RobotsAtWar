@@ -18,7 +18,7 @@ namespace RobotsAtWar.Server
  
         public void RegisterWarrior(string warriorName)
         {
-            _warriorByName.Add(warriorName, new Warrior(warriorName,_timeMachine));
+            _warriorByName.Add(warriorName, new Warrior(warriorName));
 
             if (_warriorByName.Count == 1)
             {

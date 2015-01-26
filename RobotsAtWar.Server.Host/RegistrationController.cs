@@ -13,6 +13,7 @@ namespace RobotsAtWar.Server.Host
         public string Post([FromBody]string warriorName)
         {
             BattleFieldSingleton.BattleField.RegisterWarrior(warriorName);
+            
             Console.WriteLine("New warrior named: "+warriorName+" registered");
             return "You have been connected";
         }

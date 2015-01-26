@@ -28,6 +28,11 @@ namespace RobotsAtWar.Server
 
         }
 
+        public Warrior(string warriorName)
+        {
+            _warriorName = warriorName;            
+        }
+
         public void Attack(Strength str)
         {
 
