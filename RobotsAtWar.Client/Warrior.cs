@@ -1,10 +1,11 @@
-﻿﻿using System;
-﻿using System.Collections.Generic;
-﻿using Business.Enums;
-﻿using log4net;
-using Action = Business.Enums.Action;
+﻿using System;
+using System.Collections.Generic;
+using RobotsAtWar;
+using RobotsAtWar.Enums;
+using log4net;
+using Action = RobotsAtWar.Enums.Action;
 
-namespace Business
+namespace RobotsAtWar.Client
 {
     public class Warrior //: IResetable
     {

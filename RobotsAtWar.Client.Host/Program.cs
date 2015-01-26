@@ -1,8 +1,8 @@
 ﻿using System;
-using Business.Tools;
+using RobotsAtWar.Client.Tools;
 using Topshelf;
 
-namespace RobotsAtWar
+namespace RobotsAtWar.Client.Host
 {
     class Program
     {

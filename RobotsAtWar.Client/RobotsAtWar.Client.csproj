@@ -7,8 +7,8 @@
     <ProjectGuid>{69D69F24-9701-4ECB-B359-1FB819AC04A6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Business</RootNamespace>
-    <AssemblyName>Business</AssemblyName>
+    <RootNamespace>RobotsAtWar.Client</RootNamespace>
+    <AssemblyName>RobotsAtWar.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -28,6 +28,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
@@ -55,6 +58,7 @@
     <Compile Include="Warrior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WarriorBrain.cs" />
+    <Compile Include="WarriorClient.cs" />
     <Compile Include="WarriorState.cs" />
   </ItemGroup>
   <ItemGroup>

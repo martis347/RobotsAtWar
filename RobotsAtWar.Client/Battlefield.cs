@@ -1,6 +1,6 @@
 ﻿using log4net;
 
-namespace Business
+namespace RobotsAtWar.Client
 {
     public class Battlefield
     {

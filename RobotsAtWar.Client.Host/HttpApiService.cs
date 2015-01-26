@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
-using Business;
+using RobotsAtWar.Client;
 
-namespace RobotsAtWar
+namespace RobotsAtWar.Client.Host
 {
     class HttpApiService
     {
@@ -32,12 +32,13 @@ namespace RobotsAtWar
 
         public void Start()
         {
-            var me = new WarriorClient();
+            //var me = new WarriorClient();
+            WarriorClient me = new WarriorClient();
 
             EventLog.WriteEntry(EventSource, "Opening HttpApiService server.");
             _server.OpenAsync();
 
-            me.Register("Warrior One");
+            WarriorClient.Register("Warrior One");
 
         }
 

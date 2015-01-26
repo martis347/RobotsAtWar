@@ -1,6 +1,6 @@
-﻿using Business.Enums;
+﻿using RobotsAtWar.Enums;
 
-namespace Business
+namespace RobotsAtWar.Client
 {
     public class WarriorState
     {

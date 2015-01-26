@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace Business.Tools
+namespace RobotsAtWar.Client.Tools
 {
     public class ConfigSettings
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Business.Enums;
-using Action = Business.Enums.Action;
+using RobotsAtWar.Enums;
+using Action = RobotsAtWar.Enums.Action;
 
-namespace Business
+namespace RobotsAtWar.Client
 {
     public class Strategies
     {

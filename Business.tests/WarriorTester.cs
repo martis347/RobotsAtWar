@@ -1,12 +1,7 @@
-﻿using System;
-using System.Configuration;
-using System.Threading;
-using System.Threading.Tasks;
-using Business.Enums;
-using log4net.Config;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using RobotsAtWar.Client;
 
-namespace Business.Tests
+namespace RobotsAtWar.Tests
 {
     [TestFixture]
     public class WarriorTester

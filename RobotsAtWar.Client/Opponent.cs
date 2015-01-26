@@ -2,10 +2,10 @@
 using System.IO;
 using System.Net;
 using System.Text;
-using Business.Enums;
-using Business.Tools;
+using RobotsAtWar.Enums;
+using RobotsAtWar.Client.Tools;
 
-namespace Business
+namespace RobotsAtWar.Client
 {
     public class Opponent
     {

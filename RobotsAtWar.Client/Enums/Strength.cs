@@ -1,4 +1,4 @@
-namespace Business.Enums
+namespace RobotsAtWar.Enums
 {
     public enum Strength
     {
