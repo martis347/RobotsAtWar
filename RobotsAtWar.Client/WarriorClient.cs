@@ -57,6 +57,7 @@ namespace RobotsAtWar.Client
             }
 
         }
+
         private static void ClearCurrentConsoleLine(int lineToClean, int lineToContinue)
         {
             Console.SetCursorPosition(0, Console.CursorTop - lineToClean);

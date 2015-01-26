@@ -5,6 +5,7 @@ namespace RobotsAtWar.Server.Host
 {
     public class RegistrationController : ApiController
     {
+        private static int number = 0;
         public void Get()
         {
             Console.WriteLine("Connected!");
@@ -12,13 +13,18 @@ namespace RobotsAtWar.Server.Host
         // POST api/<controller>
         public string Post([FromBody]string warriorName)
         {
+            number++;
             BattleFieldSingleton.BattleField.RegisterWarrior(warriorName);
-            
-            Console.WriteLine("New warrior named: "+warriorName+" registered");
+
+            Console.WriteLine("New warrior named: " + warriorName + " registered");
+            while (number != 2)
+            {
+
+            }
             return "You have been connected";
         }
 
-        
-        
+
+
     }
 }

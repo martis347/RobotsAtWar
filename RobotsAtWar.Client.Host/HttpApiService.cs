@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
 using RobotsAtWar.Client;
+using RobotsAtWar.Client.Tools;
 
 namespace RobotsAtWar.Client.Host
 {
@@ -38,7 +39,8 @@ namespace RobotsAtWar.Client.Host
             EventLog.WriteEntry(EventSource, "Opening HttpApiService server.");
             _server.OpenAsync();
 
-            WarriorClient.Register("Warrior One");
+            string warriorName = ConfigSettings.ReadSetting("WarriorName");
+            WarriorClient.Register(warriorName);
 
         }
 
