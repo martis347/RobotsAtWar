@@ -11,6 +11,7 @@ namespace RobotsAtWar.Client
     public class WarriorClient
     {
         private const string ServerUrl = "ServerUrl";
+        private const string WarriorName = "WarriorName";
 
         public bool Dead = false;
 
@@ -89,7 +90,7 @@ namespace RobotsAtWar.Client
             var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Attack");
             request.Timeout = 100000;
 
-            var data = Encoding.ASCII.GetBytes("="+power);
+            var data = Encoding.ASCII.GetBytes("=" + power + ConfigSettings.ReadSetting(WarriorName));
 
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";

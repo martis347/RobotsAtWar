@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using RobotsAtWar.Client.Tools;
 using Action = RobotsAtWar.Enums.Action;
 
@@ -22,7 +23,7 @@ namespace RobotsAtWar.Client
             //    battleTime = _warriorClient.GetBattleTime();
             //}
             //Thread.Sleep(battleTime - DateTime.UtcNow);
-            //Fight();
+            Fight();
         }
 
         private void Fight()
@@ -43,6 +44,7 @@ namespace RobotsAtWar.Client
            
             Command command = SetNextCommand(number);
             ExecuteCommand(command);
+            Thread.Sleep(2000);
         }
 
         private Command SetNextCommand(int number)
