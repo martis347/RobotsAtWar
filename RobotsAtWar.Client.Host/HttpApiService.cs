@@ -43,6 +43,7 @@ namespace RobotsAtWar.Client.Host
             WarriorBrain brain = new WarriorBrain(me);
 
             Console.WriteLine(warriorsName);
+            Console.WriteLine("Connecting now...");
             brain.Start(warriorsName);
 
         }

@@ -17,6 +17,7 @@ namespace RobotsAtWar.Client
         public void Start(string warriorName)
         {
             _warriorClient.Register(warriorName);
+            Thread.Sleep(1000);
             //DateTime battleTime = DateTime.MinValue;
             //while (battleTime == DateTime.MinValue)
             //{
