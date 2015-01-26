@@ -3,7 +3,6 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading;
-using Business;
 using Business.Enums;
 using Business.Tools;
 using Action = Business.Enums.Action;
@@ -84,6 +83,7 @@ namespace Business
         private const string ServerUrl = "ServerUrl";
 
         public bool Dead = false;
+
         public void Register(string warriorName)
         {
             while (true)
@@ -111,8 +111,6 @@ namespace Business
                     var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
                     Console.WriteLine("Response from server:" + responseString);
-
-
                 }
                 catch (Exception)
                 {
