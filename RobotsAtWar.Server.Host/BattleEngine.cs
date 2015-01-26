@@ -35,7 +35,8 @@ namespace RobotsAtWar.Server.Host
             _server.OpenAsync();
 
             BattleField.WaitForWarriors();
-            BattleField.Start();
+            Console.WriteLine("Both connected");
+           // BattleField.Start();
         }
 
         public void Stop()

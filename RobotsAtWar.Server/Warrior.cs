@@ -12,7 +12,7 @@ namespace RobotsAtWar.Server
 
         private readonly ITimeMachine _timeMachine;
 
-        private WarriorState WarriorState { get; set; }
+        private WarriorState WarriorState = new WarriorState(); 
 
         public Warrior(string warriorName, ITimeMachine timeMachine, int life = 100)
         {
@@ -35,7 +35,7 @@ namespace RobotsAtWar.Server
 
         public void Attack(Strength str)
         {
-
+            int power = 0;
             Console.WriteLine(WarriorState.Life);
             WarriorState.State = State.Attacking;
             _logger.Info("I'm attacking");
@@ -45,7 +45,25 @@ namespace RobotsAtWar.Server
                 _logger.Info("My attack has been interrupted!");
                 return;
             }
+            switch (str)
+            {
+                case Strength.Weak:
+                    power = 1;
+                    break;
+
+                case Strength.Normal:
+                    power = 2;
+                    break;
+
+                case Strength.Strong:
+                    power = 4;
+                    break;
+            }
             //_opponent.GetAttacked(str);
+            WarriorState.Life -= power;
+
+            Console.WriteLine(WarriorState.Life);
+
         }
 
         public void GetAttacked(int str)

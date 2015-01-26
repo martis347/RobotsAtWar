@@ -39,8 +39,11 @@ namespace RobotsAtWar.Client.Host
             EventLog.WriteEntry(EventSource, "Opening HttpApiService server.");
             _server.OpenAsync();
 
-            string warriorName = ConfigSettings.ReadSetting("WarriorName");
-            WarriorClient.Register(warriorName);
+            string warriorsName = ConfigSettings.ReadSetting("WarriorName");
+            WarriorBrain brain = new WarriorBrain(me);
+
+            Console.WriteLine(warriorsName);
+            brain.Start(warriorsName);
 
         }
 

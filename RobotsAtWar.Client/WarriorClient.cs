@@ -14,7 +14,7 @@ namespace RobotsAtWar.Client
 
         public bool Dead = false;
 
-        public static void Register(string warriorName)
+        public void Register(string warriorName)
         {
             bool retry = true;
             while (retry)
@@ -70,7 +70,7 @@ namespace RobotsAtWar.Client
         //{
 
         //}
-
+        
         public void Attack(Strength strength)
         {
             int power = 0;
@@ -89,7 +89,7 @@ namespace RobotsAtWar.Client
             var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Attack");
             request.Timeout = 100000;
 
-            var data = Encoding.ASCII.GetBytes(power.ToString());
+            var data = Encoding.ASCII.GetBytes("="+power);
 
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";

@@ -1,15 +1,10 @@
 ﻿using System;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Threading;
-using RobotsAtWar.Enums;
 using RobotsAtWar.Client.Tools;
 using Action = RobotsAtWar.Enums.Action;
 
 namespace RobotsAtWar.Client
 {
-    class WarriorBrain
+   public class WarriorBrain
     {
         private WarriorClient _warriorClient;
 
@@ -18,16 +13,16 @@ namespace RobotsAtWar.Client
             _warriorClient = warriorClient;
         }
 
-        public void Start()
+        public void Start(string warriorName)
         {
-            WarriorClient.Register(ConfigSettings.ReadSetting("WarriorName"));
-            DateTime battleTime = DateTime.MinValue;
-            while (battleTime == DateTime.MinValue)
-            {
-                battleTime = _warriorClient.GetBattleTime();
-            }
-            Thread.Sleep(battleTime - DateTime.UtcNow);
-            Fight();
+            _warriorClient.Register(warriorName);
+            //DateTime battleTime = DateTime.MinValue;
+            //while (battleTime == DateTime.MinValue)
+            //{
+            //    battleTime = _warriorClient.GetBattleTime();
+            //}
+            //Thread.Sleep(battleTime - DateTime.UtcNow);
+            //Fight();
         }
 
         private void Fight()

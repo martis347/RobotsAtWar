@@ -11,14 +11,15 @@ namespace RobotsAtWar.Server.Host
     public class AttackController : ApiController
     {
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public string Post([FromBody]string value)
         {
+            Console.WriteLine(value);
             int power = Int32.Parse(value);
             var str = Strength.None;
             switch (power)
             {
                 case 4:
-                    str=Strength.Strong;
+                    str = Strength.Strong;
                     break;
                 case 2:
                     str = Strength.Normal;
@@ -27,8 +28,8 @@ namespace RobotsAtWar.Server.Host
                     str = Strength.Weak;
                     break;
             }
-            BattleFieldSingleton.BattleField.Warrior1.Attack(str);
-
+            BattleFieldSingleton.BattleField.Warrior1.Attack(Strength.None);
+            return "You attacked";
         }
 
     }

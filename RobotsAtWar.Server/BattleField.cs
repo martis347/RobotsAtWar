@@ -14,7 +14,7 @@ namespace RobotsAtWar.Server
 
         private DateTime _battleTime;
 
-        public Warrior Warrior1;
+        public Warrior Warrior1 = new Warrior("Warrior1");
  
         public void RegisterWarrior(string warriorName)
         {
