@@ -53,13 +53,13 @@ namespace RobotsAtWar.Server
             ClearCurrentConsoleLine(2, 2);
         }
 
-        private static void ClearCurrentConsoleLine(int lineToClean, int LineToContinue)
+        private static void ClearCurrentConsoleLine(int lineToClean, int lineToContinue)
         {
             Console.SetCursorPosition(0, Console.CursorTop - lineToClean);
             int currentLineCursor = Console.CursorTop;
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, currentLineCursor+LineToContinue);
+            Console.SetCursorPosition(0, currentLineCursor+lineToContinue);
         }
 
 
