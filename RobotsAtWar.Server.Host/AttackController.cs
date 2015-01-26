@@ -26,7 +26,7 @@ namespace RobotsAtWar.Server.Host
                     str = Strength.Weak;
                     break;
             }
-            BattleFieldSingleton.BattleField._warriorByName[name].Attack(str);
+            BattleFieldSingleton.BattleField.Attack(name,str);
             
             return "You attacked";
         }

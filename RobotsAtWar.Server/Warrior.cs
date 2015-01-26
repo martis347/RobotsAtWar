@@ -13,7 +13,9 @@ namespace RobotsAtWar.Server
 
         private readonly ITimeMachine _timeMachine = new TimeMachine();
 
-        private WarriorState WarriorState = new WarriorState(); 
+        private WarriorState WarriorState = new WarriorState();
+
+        public string Opponent;
 
         public Warrior(string warriorName, ITimeMachine timeMachine, int life = 100)
         {
@@ -67,9 +69,22 @@ namespace RobotsAtWar.Server
 
         }
 
-        public void GetAttacked(int str)
+        public void GetAttacked(Strength str)
         {
-            var damage = (int)str;
+            int damage = 0;
+
+            switch (str)
+            {
+                case Strength.Strong:
+                    damage = 3;
+                    break;
+                case Strength.Normal:
+                    damage = 2;
+                    break;
+                case Strength.Weak:
+                    damage = 1;
+                    break;
+            }
             Console.WriteLine(WarriorState.Life);
 
             if (WarriorState.State == State.Defending)
@@ -127,5 +142,12 @@ namespace RobotsAtWar.Server
         {
             WarriorState.State = State.Idle;
         }
+
+        public void SetOpponent(string opponent)
+        {
+            Opponent = opponent;
+        }
+
+        
     }
 }

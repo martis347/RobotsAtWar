@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using RobotsAtWar.Server.Enums;
 
@@ -10,7 +11,7 @@ namespace RobotsAtWar.Server
     {
        
 
-        public Dictionary<string, Warrior> _warriorByName = new Dictionary<string, Warrior>();
+        public static Dictionary<string, Warrior> _warriorByName = new Dictionary<string, Warrior>();
 
         private readonly TimeMachine _timeMachine = new TimeMachine();
 
@@ -19,7 +20,7 @@ namespace RobotsAtWar.Server
         public void RegisterWarrior(string warriorName)
         {
             _warriorByName[warriorName] = new Warrior(warriorName,_timeMachine);
-            _warriorByName.Add(warriorName, new Warrior(warriorName,_timeMachine));
+           // _warriorByName.Add(warriorName, new Warrior(warriorName,_timeMachine));
 
             if (_warriorByName.Count == 1)
             {
@@ -57,7 +58,7 @@ namespace RobotsAtWar.Server
             ClearCurrentConsoleLine(2, 2);
         }
 
-        private static void ClearCurrentConsoleLine(int lineToClean, int lineToContinue)
+        private void ClearCurrentConsoleLine(int lineToClean, int lineToContinue)
         {
             Console.SetCursorPosition(0, Console.CursorTop - lineToClean);
             int currentLineCursor = Console.CursorTop;
@@ -69,10 +70,22 @@ namespace RobotsAtWar.Server
 
         public void Start()
         {
-            
+            Console.WriteLine(_warriorByName.ElementAt(0).Key);
+
+            Console.WriteLine(_warriorByName.ElementAt(1).Key);
+
+            _warriorByName.ElementAt(0).Value.SetOpponent(_warriorByName.ElementAt(1).Key);
+            _warriorByName.ElementAt(1).Value.SetOpponent(_warriorByName.ElementAt(0).Key);
 
 
 
+        }
+
+
+        public void Attack(string name, Strength str)
+        {
+            Console.WriteLine(_warriorByName[name].Opponent);
+            _warriorByName[_warriorByName[name].Opponent].GetAttacked(str);
         }
     }
 
