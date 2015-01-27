@@ -25,12 +25,7 @@ namespace RobotsAtWar.Server.Host.Controllers
                     str = Strength.Weak;
                     break;
             }
-            if (BattleFieldSingleton.BattleField.GetWarriorByName(name).Attack(name, str))
-            {
-                return "You have dealt " + power + " damage";
-            }
-            return "Enemy was defending, no damage dealt";
-
+            return BattleFieldSingleton.BattleField.GetWarriorByName(name).Attack(name, str);
         }
 
     }

@@ -6,7 +6,9 @@ using Action = RobotsAtWar.Enums.Action;
 namespace RobotsAtWar.Client
 {
    public class WarriorBrain
-    {
+   {
+       public bool enemyIsDead = false;
+
         private WarriorClient _warriorClient;
 
         public WarriorBrain(WarriorClient warriorClient)
@@ -30,7 +32,7 @@ namespace RobotsAtWar.Client
         private void Fight()
         {
             int nextActionNumber = 0;
-            while (true)
+            while (!enemyIsDead)
             {
                 if (_warriorClient.Dead)
                 {

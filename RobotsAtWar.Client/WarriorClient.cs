@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using RobotsAtWar.Client.Enums;
 using RobotsAtWar.Client.Tools;
 using RobotsAtWar.Enums;
 
@@ -74,9 +75,10 @@ namespace RobotsAtWar.Client
 
         //}
         
-        public void Attack(Strength strength)
+        public Response Attack(Strength strength)
         {
             int power = 0;
+            string responseString = "";
             switch (strength)
             {
                 case Strength.Strong:
@@ -108,7 +110,7 @@ namespace RobotsAtWar.Client
                 var response = (HttpWebResponse)request.GetResponse();
 
                 // ReSharper disable once AssignNullToNotNullAttribute
-                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
                 Console.WriteLine("Response from server:" + responseString);
             }
@@ -117,6 +119,23 @@ namespace RobotsAtWar.Client
                 Console.WriteLine("Lost connection with server");
             }
             Thread.Sleep(SleepTime(strength));
+            return StringToResponse(Int32.Parse(responseString));
+        }
+
+        private Response StringToResponse(int value)
+        {
+            switch (value)
+            {
+                case 0:
+                    return Response.Success;
+                case 1:
+                    return Response.Defending;
+                case 2:
+                    return Response.Interrupted;
+                case 3:
+                    return Response.Dead;
+            }
+            return Response.Success;
         }
 
         private int SleepTime(Strength strength)

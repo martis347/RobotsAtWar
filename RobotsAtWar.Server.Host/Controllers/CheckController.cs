@@ -10,11 +10,10 @@ namespace RobotsAtWar.Server.Host.Controllers
     public class CheckController : ApiController
     {
         // POST api/<controller>
-        public WarriorState Post([FromBody]string value)
+        public WarriorState Post([FromBody] string value)
         {
-            return BattleFieldSingleton.BattleField.Check(value);
+            return BattleFieldSingleton.BattleField.GetWarriorByName(value).GetChecked();
         }
 
-       
     }
 }

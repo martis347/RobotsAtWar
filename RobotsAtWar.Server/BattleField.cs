@@ -78,16 +78,7 @@ namespace RobotsAtWar.Server
         }
 
 
-        public bool Attack(string name, Strength str)
-        {
-            _warriorByName[name].WarriorState.State = State.Attacking;
-            return (_warriorByName[_warriorByName[name].OpponentName].GetAttacked(str));
-        }
 
-        public WarriorState Check(string name)
-        {
-           return (_warriorByName[_warriorByName[name].OpponentName].GetChecked());
-        }
     }
 
     
