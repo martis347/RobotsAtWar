@@ -44,6 +44,7 @@ namespace RobotsAtWar.Client
                     var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
                     Console.WriteLine("Response from server:" + responseString);
+                    retry = false;
                 }
                 catch (Exception)
                 {
@@ -54,7 +55,7 @@ namespace RobotsAtWar.Client
 
                     
                 }
-                retry = false;
+                
             }
 
         }
@@ -109,7 +110,7 @@ namespace RobotsAtWar.Client
                 // ReSharper disable once AssignNullToNotNullAttribute
                 responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
-                Console.WriteLine("Response from server:" + responseString);
+
             }
             catch (Exception)
             {
@@ -118,6 +119,7 @@ namespace RobotsAtWar.Client
             Thread.Sleep(SleepTime(strength));
             Response resp = new Response();
             resp = StringToResponse(Int32.Parse(responseString));
+            Console.WriteLine("Server response "+resp);
             if (resp == Response.Dead)
             {
                 WarriorBrain.enemyIsDead = true;

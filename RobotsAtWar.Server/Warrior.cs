@@ -41,7 +41,7 @@ namespace RobotsAtWar.Server
 
         public Response Attack(string name, Strength str)
         {
-            if (Opponent(name).WarriorState.State == State.Dead)
+            if (Opponent(name).WarriorState.State == State.Dead || Opponent(name).WarriorState.Life <= 0)
             {
                 return Response.Dead;
             }
