@@ -15,7 +15,7 @@ namespace RobotsAtWar.Server
 
         public WarriorState WarriorState = new WarriorState();
 
-        public string Opponent;
+        public string OpponentName;
 
         public Warrior(string warriorName, ITimeMachine timeMachine, int life = 100)
         {
@@ -29,22 +29,36 @@ namespace RobotsAtWar.Server
 
         }
 
-        public bool Attack(string name, Strength str)
+        private Warrior Opponent(string myName)
         {
-            BattleFieldSingleton.BattleField.GetWarriorByName(name).WarriorState.State = State.Attacking;
+            return BattleFieldSingleton.BattleField.GetWarriorByName(BattleFieldSingleton.BattleField.GetWarriorByName(myName).OpponentName);
+        }
+
+        private Warrior Me (string myName)
+        {
+            return BattleFieldSingleton.BattleField.GetWarriorByName(myName);
+        }
+
+        public Response Attack(string name, Strength str)
+        {
+            if (Opponent(name).WarriorState.State == State.Dead)
+            {
+                return Response.Dead;
+            }
+
+            Me(name).WarriorState.State = State.Attacking;
             _logger.Info(_warriorName + " Is attacking");
             _timeMachine.Sleep(((int)str) * 1000, WarriorState, this);
             if (WarriorState.State == State.Interrupted)
             {
                 _logger.Info(_warriorName + " attack was interrupted");
-                return false;
+                return Response.Interrupted;
             }
-            return (BattleFieldSingleton.BattleField.GetWarriorByName(
-                BattleFieldSingleton.BattleField.GetWarriorByName(name).Opponent).GetAttacked(str));
+            return (Opponent(name).GetAttacked(str));
 
         }
 
-        public bool GetAttacked(Strength str)
+        public Response GetAttacked(Strength str)
         {
             int damage = 0;
 
@@ -64,13 +78,17 @@ namespace RobotsAtWar.Server
             if (WarriorState.State == State.Defending)
             {
                 _logger.Info(_warriorName + " has been attacked while defending! 0 Life points lost");
-                return false;
+                return Response.Defending;
             }
             
              WarriorState.Life -= damage;
              _logger.Info(_warriorName+" has lost " + damage + " life points!");
              Interrupt();
-            return true;
+            if (WarriorState.Life <= 0)
+            {
+                WarriorState.State = State.Dead;
+            }
+            return Response.Success;
         }
 
         private void Interrupt()
@@ -124,7 +142,7 @@ namespace RobotsAtWar.Server
 
         public void SetOpponent(string opponent)
         {
-            Opponent = opponent;
+            OpponentName = opponent;
         }
 
         

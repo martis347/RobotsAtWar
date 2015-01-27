@@ -7,7 +7,7 @@ namespace RobotsAtWar.Server.Host.Controllers
     public class AttackController : ApiController
     {
         // POST api/<controller>
-        public string Post([FromBody]string value)
+        public Response Post([FromBody]string value)
         {
             int power = value.ElementAt(0) - 48;
             string name = value.Remove(0, 1);

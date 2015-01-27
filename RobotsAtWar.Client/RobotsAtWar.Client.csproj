@@ -49,6 +49,7 @@
     <Compile Include="Battlefield.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Enums\Action.cs" />
+    <Compile Include="Enums\Response.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Enums\Strength.cs" />
