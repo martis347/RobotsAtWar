@@ -6,7 +6,7 @@ namespace RobotsAtWar.Client
 {
     public class Strategies
     {
-        public static readonly List<Command> Aggressive = new List<Command>
+        public static readonly List<Command> Testing = new List<Command>
         {
            // new Command(Action.Attack,Strength.Weak),
            //// new Command(Action.Check),
@@ -16,7 +16,7 @@ namespace RobotsAtWar.Client
            // new Command(Action.Attack,Strength.Weak),
            // //new Command(Action.Check)
            //new Command(Action.Check),
-           new Command(Action.Attack,Strength.Weak)
+           new Command(Action.Check)
             
         };
 

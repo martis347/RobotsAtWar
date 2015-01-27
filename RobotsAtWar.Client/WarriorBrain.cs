@@ -45,12 +45,12 @@ namespace RobotsAtWar.Client
            
             Command command = SetNextCommand(number);
             ExecuteCommand(command);
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
         }
 
         private Command SetNextCommand(int number)
         {
-            return Strategies.Aggressive[number % Strategies.Aggressive.Count];
+            return Strategies.Testing[number % Strategies.Testing.Count];
         }
 
         private void ExecuteCommand(Command command)

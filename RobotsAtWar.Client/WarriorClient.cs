@@ -129,7 +129,33 @@ namespace RobotsAtWar.Client
 
         public void Check()
         {
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Check");
+                request.Timeout = 100000;
 
+                var data = Encoding.ASCII.GetBytes("=" +  ConfigSettings.ReadSetting(WarriorName));
+
+                request.Method = "POST";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = data.Length;
+
+                using (var stream = request.GetRequestStream())
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+
+                var response = (HttpWebResponse)request.GetResponse();
+
+                // ReSharper disable once AssignNullToNotNullAttribute
+                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+                Console.WriteLine("Response from server:" + responseString);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Lost connection with server");
+            }
         }
 
         public void DoNothing()
