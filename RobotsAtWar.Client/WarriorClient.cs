@@ -121,7 +121,7 @@ namespace RobotsAtWar.Client
             {
                 Console.WriteLine("Lost connection with server");
             }
-            Thread.Sleep(SleepTime(strength));
+            //Thread.Sleep(SleepTime(strength));
             Response resp = new Response();
             resp = StringToResponse(Int32.Parse(responseString));
             Console.WriteLine("Server response "+resp);
@@ -187,7 +187,7 @@ namespace RobotsAtWar.Client
 
                     // ReSharper disable once AssignNullToNotNullAttribute
                     var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                    Thread.Sleep(time * 1000);
+                    //Thread.Sleep(time * 1000);
                     Console.WriteLine("Successfully defended for "+time+" seconds");
                 }
                 catch (Exception)
@@ -200,6 +200,7 @@ namespace RobotsAtWar.Client
         {
             try
             {
+                Console.WriteLine(myInfo.Life);
                 var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Rest");
                 request.Timeout = 100000;
 
@@ -223,7 +224,7 @@ namespace RobotsAtWar.Client
             {
                 Console.WriteLine("Unable to start resting");
             }
-            Thread.Sleep(time * 1000);
+            //Thread.Sleep(time * 1000);
         }
 
         public WarriorState Check()
@@ -258,6 +259,7 @@ namespace RobotsAtWar.Client
             {
                 Console.WriteLine("Lost connection with server");
             }
+            //Thread.Sleep(500);
             
             warriorState = ConvertResponseToWarriorState(responseString);
             Console.WriteLine("Enemy warrior state is "+warriorState.State + " life is " + warriorState.Life);
@@ -299,7 +301,7 @@ namespace RobotsAtWar.Client
                 }
 
                 myInfo = ConvertResponseToWarriorState(responseString);
-                Thread.Sleep(50);
+               // Thread.Sleep(50);
             }
 
         }
@@ -310,9 +312,10 @@ namespace RobotsAtWar.Client
             var warriorState = new WarriorState();
             string[] words = value.Split(',');
             words[0] = Regex.Match(words[0], @"\d+").Value;
-            words[1] = Regex.Match(words[1], @"\d+").Value;
+            int life = Int32.Parse(Regex.Match(words[1], @"-?\d+").Value);
+
             warriorState.State = ConvertIntToState(Int32.Parse(words[0]));
-            warriorState.Life = Int32.Parse(words[1]);
+            warriorState.Life = life;
             return warriorState;
         }
 

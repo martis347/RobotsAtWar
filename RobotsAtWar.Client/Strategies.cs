@@ -17,9 +17,7 @@ namespace RobotsAtWar.Client
            // //new Command(Action.Check)
            //new Command(Action.Check),
            
-           new Command(Action.Defend,15),
-           new Command(Action.Defend,2),
-           new Command(Action.Defend,1),
+           new Command(Action.Rest,10),
 
 
             

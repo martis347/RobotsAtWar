@@ -105,7 +105,7 @@ namespace RobotsAtWar.Server
             }
             _logger.Info(_warriorName+"is entering defence state!");
             WarriorState.State = State.Defending;
-            //_timeMachine.Sleep(time * 1000, WarriorState, this);
+            _timeMachine.Sleep(time * 1000, WarriorState, this);
         }
 
         public void Rest(int time)
@@ -115,13 +115,17 @@ namespace RobotsAtWar.Server
             _logger.Info(String.Format("I'm starting to rest for {0}s.", time));
             WarriorState.State = State.Resting;
             _timeMachine.Sleep(time * 1000, WarriorState, this);
-            if (WarriorState.State == State.Interrupted)
+            if (WarriorState.Life <= 0)
+            {
+                _logger.Info("I died during healing");
+            }
+            else if (WarriorState.State == State.Interrupted)
             {
                 _logger.Info("My healing was interrupted.");
             }
             else
             {
-                WarriorState.Life += time*2;
+                WarriorState.Life += time * 2;
                 _logger.Info("I healed successfully!");
             }
         }
