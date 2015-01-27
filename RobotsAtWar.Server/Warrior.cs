@@ -13,7 +13,7 @@ namespace RobotsAtWar.Server
 
         private readonly ITimeMachine _timeMachine = new TimeMachine();
 
-        private WarriorState WarriorState = new WarriorState();
+        public WarriorState WarriorState = new WarriorState();
 
         public string Opponent;
 
@@ -29,11 +29,19 @@ namespace RobotsAtWar.Server
 
         }
 
-        public Warrior(string warriorName)
+        public bool Attack(string name, Strength str)
         {
-            _warriorName = warriorName;
-            _logger = LogManager.GetLogger(typeof(Warrior));
-        
+            BattleFieldSingleton.BattleField.GetWarriorByName(name).WarriorState.State = State.Attacking;
+            _logger.Info(_warriorName + " Is attacking");
+            _timeMachine.Sleep(((int)str) * 1000, WarriorState, this);
+            if (WarriorState.State == State.Interrupted)
+            {
+                _logger.Info(_warriorName + " attack was interrupted");
+                return false;
+            }
+            return (BattleFieldSingleton.BattleField.GetWarriorByName(
+                BattleFieldSingleton.BattleField.GetWarriorByName(name).Opponent).GetAttacked(str));
+
         }
 
         public bool GetAttacked(Strength str)

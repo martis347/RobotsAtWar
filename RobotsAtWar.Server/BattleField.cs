@@ -80,6 +80,7 @@ namespace RobotsAtWar.Server
 
         public bool Attack(string name, Strength str)
         {
+            _warriorByName[name].WarriorState.State = State.Attacking;
             return (_warriorByName[_warriorByName[name].Opponent].GetAttacked(str));
         }
 

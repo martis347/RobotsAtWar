@@ -25,7 +25,7 @@ namespace RobotsAtWar.Server.Host.Controllers
                     str = Strength.Weak;
                     break;
             }
-            if (BattleFieldSingleton.BattleField.Attack(name, str))
+            if (BattleFieldSingleton.BattleField.GetWarriorByName(name).Attack(name, str))
             {
                 return "You have dealt " + power + " damage";
             }
