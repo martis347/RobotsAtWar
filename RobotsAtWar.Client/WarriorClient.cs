@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using RobotsAtWar.Client.Tools;
 using RobotsAtWar.Enums;
@@ -127,8 +128,9 @@ namespace RobotsAtWar.Client
 
         }
 
-        public void Check()
+        public WarriorState Check()
         {
+            WarriorState warriorState = new WarriorState();           
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Check");
@@ -150,13 +152,50 @@ namespace RobotsAtWar.Client
                 // ReSharper disable once AssignNullToNotNullAttribute
                 var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
-                Console.WriteLine("Response from server:" + responseString);
+                // Split on one or more non-digit characters.
+                warriorState = ConvertResponseToWarriorState(responseString);
+                
+
             }
             catch (Exception)
             {
                 Console.WriteLine("Lost connection with server");
             }
+            Console.WriteLine("Enemy warrior state is "+warriorState.State + " life is " + warriorState.Life);
+            return warriorState;
         }
+
+        private WarriorState ConvertResponseToWarriorState(string value)
+        {
+            WarriorState state = new WarriorState();
+            string[] numbers = Regex.Split(value, @"\D+");
+            state.State = ConvertIntToState(int.Parse(numbers[0]));
+            state.Life = int.Parse(numbers[1]);
+            return state;
+        }
+
+        private State ConvertIntToState(int valueFromResponse)
+        {
+            switch (valueFromResponse)
+            {
+                case 0:
+                    return State.Idle;
+                case 1:
+                    return State.Attacking;
+                case 2:
+                    return State.Defending;
+                case 3:
+                    return State.Resting;
+                case 4:
+                    return State.Checking;
+                case 5:
+                    return State.Interrupted;
+                case 6:
+                    return State.Dead;
+            }
+            return State.Idle;
+        }
+
 
         public void DoNothing()
         {
