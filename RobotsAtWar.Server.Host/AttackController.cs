@@ -26,9 +26,12 @@ namespace RobotsAtWar.Server.Host
                     str = Strength.Weak;
                     break;
             }
-            BattleFieldSingleton.BattleField.Attack(name,str);
-            
-            return "You attacked";
+            if (BattleFieldSingleton.BattleField.Attack(name, str))
+            {
+                return "You have dealt " + power + " damage";
+            }
+            return "Enemy was defending, no damage dealt";
+
         }
 
     }

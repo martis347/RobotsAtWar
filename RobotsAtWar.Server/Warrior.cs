@@ -36,7 +36,7 @@ namespace RobotsAtWar.Server
         
         }
 
-        public void GetAttacked(Strength str)
+        public bool GetAttacked(Strength str)
         {
             int damage = 0;
 
@@ -54,13 +54,15 @@ namespace RobotsAtWar.Server
             }
 
             if (WarriorState.State == State.Defending)
-                _logger.Info(_warriorName+" has been attacked while defending! 0 Life points lost");
-            else
             {
-                WarriorState.Life -= damage;
-                _logger.Info(_warriorName+" has lost " + damage + " life points!");
-                Interrupt();
+                _logger.Info(_warriorName + " has been attacked while defending! 0 Life points lost");
+                return false;
             }
+            
+             WarriorState.Life -= damage;
+             _logger.Info(_warriorName+" has lost " + damage + " life points!");
+             Interrupt();
+            return true;
         }
 
         private void Interrupt()

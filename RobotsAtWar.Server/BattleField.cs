@@ -78,9 +78,9 @@ namespace RobotsAtWar.Server
         }
 
 
-        public void Attack(string name, Strength str)
+        public bool Attack(string name, Strength str)
         {
-            _warriorByName[_warriorByName[name].Opponent].GetAttacked(str);
+            return (_warriorByName[_warriorByName[name].Opponent].GetAttacked(str));
         }
     }
 
