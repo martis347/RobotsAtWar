@@ -70,10 +70,6 @@ namespace RobotsAtWar.Server
 
         public void Start()
         {
-            Console.WriteLine(_warriorByName.ElementAt(0).Key);
-
-            Console.WriteLine(_warriorByName.ElementAt(1).Key);
-
             _warriorByName.ElementAt(0).Value.SetOpponent(_warriorByName.ElementAt(1).Key);
             _warriorByName.ElementAt(1).Value.SetOpponent(_warriorByName.ElementAt(0).Key);
 
@@ -84,7 +80,6 @@ namespace RobotsAtWar.Server
 
         public void Attack(string name, Strength str)
         {
-            Console.WriteLine(_warriorByName[name].Opponent);
             _warriorByName[_warriorByName[name].Opponent].GetAttacked(str);
         }
     }

@@ -36,39 +36,6 @@ namespace RobotsAtWar.Server
         
         }
 
-        public void Attack(Strength str)
-        {
-            int power = 0;
-            Console.WriteLine(WarriorState.Life);
-            WarriorState.State = State.Attacking;
-            _logger.Info("I'm attacking");
-            _timeMachine.Sleep(((int)str) * 1000, WarriorState, this);
-            if (WarriorState.State == State.Interrupted)
-            {
-                _logger.Info("My attack has been interrupted!");
-                return;
-            }
-            switch (str)
-            {
-                case Strength.Weak:
-                    power = 1;
-                    break;
-
-                case Strength.Normal:
-                    power = 2;
-                    break;
-
-                case Strength.Strong:
-                    power = 4;
-                    break;
-            }
-            //_opponent.GetAttacked(str);
-            WarriorState.Life -= power;
-
-            Console.WriteLine(WarriorState.Life);
-
-        }
-
         public void GetAttacked(Strength str)
         {
             int damage = 0;
@@ -85,16 +52,20 @@ namespace RobotsAtWar.Server
                     damage = 1;
                     break;
             }
-            Console.WriteLine(WarriorState.Life);
 
             if (WarriorState.State == State.Defending)
-                _logger.Info("Enemy has been attacked while defending! 0 Life points lost");
+                _logger.Info(_warriorName+" has been attacked while defending! 0 Life points lost");
             else
             {
                 WarriorState.Life -= damage;
-                _logger.Info("I have lost " + damage + " life points!");
-                // Interrupt();
+                _logger.Info(_warriorName+" has lost " + damage + " life points!");
+                Interrupt();
             }
+        }
+
+        private void Interrupt()
+        {
+            WarriorState.State = State.Interrupted;
         }
 
         public void Defend(int time)
