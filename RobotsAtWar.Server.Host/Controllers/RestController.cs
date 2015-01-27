@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace RobotsAtWar.Server.Host.Controllers
 {
-    public class DefenceController : ApiController
+    public class RestController : ApiController
     {
         // POST api/<controller>
         public void Post([FromBody]string value)
@@ -11,8 +15,7 @@ namespace RobotsAtWar.Server.Host.Controllers
             int time = value.ElementAt(0) - 48;
             string name = value.Remove(0, 1);
 
-            BattleFieldSingleton.BattleField.GetWarriorByName(name).Defend(time);
-
+            BattleFieldSingleton.BattleField.GetWarriorByName(name).Rest(time);
         }
 
     }

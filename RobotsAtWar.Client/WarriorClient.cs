@@ -168,7 +168,7 @@ namespace RobotsAtWar.Client
         {
                 try
                 {
-                    var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "MyInfo");
+                    var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Defend");
                     request.Timeout = 100000;
 
                     var data = Encoding.ASCII.GetBytes("=" + time+ConfigSettings.ReadSetting(WarriorName));
@@ -186,19 +186,42 @@ namespace RobotsAtWar.Client
 
                     // ReSharper disable once AssignNullToNotNullAttribute
                     var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-
-
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("Unable to start defending");
                 }
+            Thread.Sleep(time*1000);
         }
 
         public void Rest(int time)
         {
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Rest");
+                request.Timeout = 100000;
 
+                var data = Encoding.ASCII.GetBytes("=" + time + ConfigSettings.ReadSetting(WarriorName));
+
+                request.Method = "POST";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = data.Length;
+
+                using (var stream = request.GetRequestStream())
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+
+                var response = (HttpWebResponse)request.GetResponse();
+
+                // ReSharper disable once AssignNullToNotNullAttribute
+                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Unable to start resting");
+            }
+            Thread.Sleep(time * 1000);
         }
 
         public WarriorState Check()

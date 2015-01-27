@@ -121,7 +121,7 @@ namespace RobotsAtWar.Server
             }
             else
             {
-                WarriorState.Life += time;
+                WarriorState.Life += time*2;
                 _logger.Info("I healed successfully!");
             }
         }
