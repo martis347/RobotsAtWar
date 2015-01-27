@@ -166,7 +166,34 @@ namespace RobotsAtWar.Client
 
         public void Defend(int time)
         {
+                try
+                {
+                    var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "MyInfo");
+                    request.Timeout = 100000;
 
+                    var data = Encoding.ASCII.GetBytes("=" + time+ConfigSettings.ReadSetting(WarriorName));
+
+                    request.Method = "POST";
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.ContentLength = data.Length;
+
+                    using (var stream = request.GetRequestStream())
+                    {
+                        stream.Write(data, 0, data.Length);
+                    }
+
+                    var response = (HttpWebResponse)request.GetResponse();
+
+                    // ReSharper disable once AssignNullToNotNullAttribute
+                    var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Unable to start defending");
+                }
         }
 
         public void Rest(int time)
