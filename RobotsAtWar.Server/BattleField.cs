@@ -82,6 +82,11 @@ namespace RobotsAtWar.Server
         {
             return (_warriorByName[_warriorByName[name].Opponent].GetAttacked(str));
         }
+
+        public WarriorState Check(string name)
+        {
+            _warriorByName[_warriorByName[name].Opponent].GetChecked();
+        }
     }
 
     

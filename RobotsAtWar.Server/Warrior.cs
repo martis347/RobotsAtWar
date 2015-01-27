@@ -100,14 +100,12 @@ namespace RobotsAtWar.Server
             }
         }
 
-        public void Check()
+        public WarriorState GetChecked()
         {
-            _logger.Info("Checking current enemy state and life.");
-            // _logger.Info("Enemy state is "+_enemy.WarriorState.State+" and Life is "+_enemy.WarriorState.Life);
+            _logger.Info("Checking current "+ _warriorName+" state and life.");
+             _logger.Info(_warriorName+" State is "+WarriorState.State+" and Life is "+WarriorState.Life);
             _timeMachine.Sleep(200, WarriorState, this);
-            // return _enemy.WarriorState;
-            //Console.WriteLine(_opponent.Check().Life + " " + _opponent.Check().State + " This is from get");
-            //  Console.WriteLine(_opponent.Check());
+             return WarriorState;
 
         }
 

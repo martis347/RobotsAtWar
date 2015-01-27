@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Http;
 using RobotsAtWar.Server.Enums;
 
-namespace RobotsAtWar.Server.Host
+namespace RobotsAtWar.Server.Host.Controllers
 {
     public class AttackController : ApiController
     {

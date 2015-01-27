@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 
-namespace RobotsAtWar.Server.Host
+namespace RobotsAtWar.Server.Host.Controllers
 {
     public class RegistrationController : ApiController
     {
