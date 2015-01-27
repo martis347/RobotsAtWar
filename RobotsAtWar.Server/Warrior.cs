@@ -132,7 +132,11 @@ namespace RobotsAtWar.Server
              _logger.Info(_warriorName+" State is "+WarriorState.State+" and Life is "+WarriorState.Life);
             _timeMachine.Sleep(200, WarriorState, this);
              return WarriorState;
+        }
 
+        public WarriorState MyInfo()
+        {
+            return Me(_warriorName).WarriorState;
         }
 
         public void Reset()
