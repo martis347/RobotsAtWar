@@ -45,7 +45,6 @@ namespace RobotsAtWar.Client
            
             Command command = SetNextCommand(number);
             ExecuteCommand(command);
-            Thread.Sleep(5000);
         }
 
         private Command SetNextCommand(int number)

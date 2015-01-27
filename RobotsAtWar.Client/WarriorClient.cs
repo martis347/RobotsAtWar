@@ -116,7 +116,23 @@ namespace RobotsAtWar.Client
             {
                 Console.WriteLine("Lost connection with server");
             }
-            
+            Thread.Sleep(SleepTime(strength));
+        }
+
+        private int SleepTime(Strength strength)
+        {
+            switch (strength)
+            {
+                case Strength.None:
+                    return 1000;
+                case Strength.Weak:
+                    return 1000;
+                case Strength.Normal:
+                    return 2000;
+                case Strength.Strong:
+                    return 3000;
+            }
+            return 1000;
         }
 
         public void Defend(int time)
