@@ -16,8 +16,6 @@ namespace RobotsAtWar.Client
         private const string ServerUrl = "ServerUrl";
         private const string WarriorName = "WarriorName";
 
-        public bool Dead = false;
-
         public void Register(string warriorName)
         {
             bool retry = true;
@@ -119,7 +117,13 @@ namespace RobotsAtWar.Client
                 Console.WriteLine("Lost connection with server");
             }
             Thread.Sleep(SleepTime(strength));
-            return StringToResponse(Int32.Parse(responseString));
+            Response resp = new Response();
+            resp = StringToResponse(Int32.Parse(responseString));
+            if (resp == Response.Dead)
+            {
+                WarriorBrain.enemyIsDead = true;
+            }
+            return resp;
         }
 
         private Response StringToResponse(int value)

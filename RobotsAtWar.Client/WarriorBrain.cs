@@ -7,7 +7,7 @@ namespace RobotsAtWar.Client
 {
    public class WarriorBrain
    {
-       public bool enemyIsDead = false;
+       public static bool enemyIsDead = false;
 
         private WarriorClient _warriorClient;
 
@@ -34,10 +34,6 @@ namespace RobotsAtWar.Client
             int nextActionNumber = 0;
             while (!enemyIsDead)
             {
-                if (_warriorClient.Dead)
-                {
-                    Environment.Exit(0);
-                }
                 ExecuteNextCommand(nextActionNumber++);
             }
         }
