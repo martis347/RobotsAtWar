@@ -85,7 +85,7 @@ namespace RobotsAtWar.Server
 
         public WarriorState Check(string name)
         {
-            _warriorByName[_warriorByName[name].Opponent].GetChecked();
+           return (_warriorByName[_warriorByName[name].Opponent].GetChecked());
         }
     }
 
