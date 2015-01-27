@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -130,7 +131,8 @@ namespace RobotsAtWar.Client
 
         public WarriorState Check()
         {
-            WarriorState warriorState = new WarriorState();           
+            WarriorState warriorState = new WarriorState();
+            string responseString = "";
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Check");
@@ -150,10 +152,8 @@ namespace RobotsAtWar.Client
                 var response = (HttpWebResponse)request.GetResponse();
 
                 // ReSharper disable once AssignNullToNotNullAttribute
-                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-                // Split on one or more non-digit characters.
-                warriorState = ConvertResponseToWarriorState(responseString);
+                responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                
                 
 
             }
@@ -161,17 +161,21 @@ namespace RobotsAtWar.Client
             {
                 Console.WriteLine("Lost connection with server");
             }
+            
+            warriorState = ConvertResponseToWarriorState(responseString);
             Console.WriteLine("Enemy warrior state is "+warriorState.State + " life is " + warriorState.Life);
             return warriorState;
         }
 
         private WarriorState ConvertResponseToWarriorState(string value)
         {
-            WarriorState state = new WarriorState();
-            string[] numbers = Regex.Split(value, @"\D+");
-            state.State = ConvertIntToState(int.Parse(numbers[0]));
-            state.Life = int.Parse(numbers[1]);
-            return state;
+            var warriorState = new WarriorState();
+            string[] words = value.Split(',');
+            words[0] = Regex.Match(words[0], @"\d+").Value;
+            words[1] = Regex.Match(words[1], @"\d+").Value;
+            warriorState.State = ConvertIntToState(Int32.Parse(words[0]));
+            warriorState.Life = Int32.Parse(words[1]);
+            return warriorState;
         }
 
         private State ConvertIntToState(int valueFromResponse)

@@ -102,7 +102,7 @@ namespace RobotsAtWar.Server
 
         public WarriorState GetChecked()
         {
-            _logger.Info("Checking current "+ _warriorName+" state and life.");
+            //_logger.Info("Checking current "+ _warriorName+" state and life.");
              _logger.Info(_warriorName+" State is "+WarriorState.State+" and Life is "+WarriorState.Life);
             _timeMachine.Sleep(200, WarriorState, this);
              return WarriorState;

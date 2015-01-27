@@ -16,7 +16,8 @@ namespace RobotsAtWar.Client
            // new Command(Action.Attack,Strength.Weak),
            // //new Command(Action.Check)
            //new Command(Action.Check),
-           new Command(Action.Check)
+           new Command(Action.Check),
+           new Command(Action.Attack,Strength.Weak)
             
         };
 
