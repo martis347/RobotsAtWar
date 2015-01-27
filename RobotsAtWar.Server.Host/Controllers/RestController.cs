@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Web.Http;
 
 namespace RobotsAtWar.Server.Host.Controllers
@@ -12,8 +9,8 @@ namespace RobotsAtWar.Server.Host.Controllers
         // POST api/<controller>
         public void Post([FromBody]string value)
         {
-            int time = value.ElementAt(0) - 48;
-            string name = value.Remove(0, 1);
+            int time = Int32.Parse(Regex.Match(value, @"\d+").Value);
+            var name = Regex.Replace(value, @"[\d-]", string.Empty);
 
             BattleFieldSingleton.BattleField.GetWarriorByName(name).Rest(time);
         }

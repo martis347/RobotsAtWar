@@ -168,6 +168,7 @@ namespace RobotsAtWar.Client
         {
                 try
                 {
+                    Console.WriteLine("Trying to defend for "+ time + " seconds");
                     var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Defend");
                     request.Timeout = 100000;
 
@@ -186,12 +187,13 @@ namespace RobotsAtWar.Client
 
                     // ReSharper disable once AssignNullToNotNullAttribute
                     var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                    Thread.Sleep(time * 1000);
+                    Console.WriteLine("Successfully defended for "+time+" seconds");
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("Unable to start defending");
                 }
-            Thread.Sleep(time*1000);
         }
 
         public void Rest(int time)

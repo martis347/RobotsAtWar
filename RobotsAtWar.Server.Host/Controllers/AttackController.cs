@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.Http;
 using RobotsAtWar.Server.Enums;
 
@@ -9,8 +11,8 @@ namespace RobotsAtWar.Server.Host.Controllers
         // POST api/<controller>
         public Response Post([FromBody]string value)
         {
-            int power = value.ElementAt(0) - 48;
-            string name = value.Remove(0, 1);
+            int power = Int32.Parse(Regex.Match(value, @"\d+").Value);
+            var name = Regex.Replace(value, @"[\d-]", string.Empty);
 
             var str = Strength.None;
             switch (power)

@@ -105,7 +105,7 @@ namespace RobotsAtWar.Server
             }
             _logger.Info(_warriorName+"is entering defence state!");
             WarriorState.State = State.Defending;
-            _timeMachine.Sleep(time * 1000, WarriorState, this);
+            //_timeMachine.Sleep(time * 1000, WarriorState, this);
         }
 
         public void Rest(int time)
