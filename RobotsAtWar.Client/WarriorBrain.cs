@@ -42,6 +42,8 @@ namespace RobotsAtWar.Client
                 }
                 ExecuteNextCommand(nextActionNumber++);
             }
+            Console.Clear();
+            Console.WriteLine("I have WON the battle!!!!!");
         }
 
         private void ExecuteNextCommand(int number)

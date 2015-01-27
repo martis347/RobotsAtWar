@@ -247,7 +247,7 @@ namespace RobotsAtWar.Client
                 }
 
                 myInfo = ConvertResponseToWarriorState(responseString);
-
+                Thread.Sleep(50);
             }
 
         }

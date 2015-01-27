@@ -67,6 +67,7 @@ namespace RobotsAtWar.Client.Host
 
         private void CheckThread()
         {
+
             me.CheckMe();
         }
 
