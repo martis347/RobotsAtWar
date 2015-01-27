@@ -12,7 +12,7 @@ namespace RobotsAtWar.Server.Host.Controllers
         // POST api/<controller>
         public WarriorState Post([FromBody] string value)
         {
-            return BattleFieldSingleton.BattleField.GetWarriorByName(value).GetChecked();
+            return BattleFieldSingleton.BattleField.GetWarriorByName(BattleFieldSingleton.BattleField.GetWarriorByName(value).OpponentName).GetChecked();
         }
 
     }

@@ -41,21 +41,20 @@ namespace RobotsAtWar.Client
 
                     var response = (HttpWebResponse)request.GetResponse();
 
-                    // ReSharper disable once AssignNullToNotNullAttribute
                     var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
                     Console.WriteLine("Response from server:" + responseString);
-                    retry = false;
                 }
                 catch (Exception)
                 {
                     ClearCurrentConsoleLine(1, 0);
                     Console.WriteLine("Connecting now...");
-                   // Thread.Sleep(500);
+                    Thread.Sleep(500);
                     
 
                     
                 }
+                retry = false;
             }
 
         }

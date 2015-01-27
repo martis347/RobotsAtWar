@@ -53,7 +53,7 @@ namespace RobotsAtWar.Server
             {
                 ClearCurrentConsoleLine(1, 0);
                 Console.WriteLine("Waiting other player to join");
-                Thread.Sleep(2000);
+                Thread.Sleep(500);
             }
             ClearCurrentConsoleLine(2, 2);
         }
