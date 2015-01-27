@@ -73,6 +73,7 @@
     <Compile Include="Controllers\AttackController.cs" />
     <Compile Include="BattleEngine.cs" />
     <Compile Include="Controllers\CheckController.cs" />
+    <Compile Include="Controllers\DefenceController.cs" />
     <Compile Include="Controllers\MyInfoController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

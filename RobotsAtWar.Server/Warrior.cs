@@ -103,7 +103,7 @@ namespace RobotsAtWar.Server
                 _logger.Info("Invalid time!");
                 return;
             }
-            _logger.Info("I'm entering defence state!");
+            _logger.Info(_warriorName+"is entering defence state!");
             WarriorState.State = State.Defending;
             _timeMachine.Sleep(time * 1000, WarriorState, this);
         }
