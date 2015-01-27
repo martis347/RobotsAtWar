@@ -34,6 +34,12 @@ namespace RobotsAtWar.Client
             int nextActionNumber = 0;
             while (!enemyIsDead)
             {
+                if (WarriorClient.myInfo.Life <= 0)
+                {
+                    Console.WriteLine("I have lost the battle");
+                    Thread.Sleep(3000);
+                    Environment.Exit(0);
+                }
                 ExecuteNextCommand(nextActionNumber++);
             }
         }
@@ -71,6 +77,11 @@ namespace RobotsAtWar.Client
                     break;
             }
         }
+
+       public void GetInfo()
+       {
+           
+       }
     }
 
     

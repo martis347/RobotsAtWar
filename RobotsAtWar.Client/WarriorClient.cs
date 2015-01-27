@@ -16,6 +16,9 @@ namespace RobotsAtWar.Client
         private const string ServerUrl = "ServerUrl";
         private const string WarriorName = "WarriorName";
 
+        public static bool Registered = false;
+        public static WarriorState myInfo = new WarriorState();
+
         public void Register(string warriorName)
         {
             bool retry = true;
@@ -45,6 +48,7 @@ namespace RobotsAtWar.Client
 
                     Console.WriteLine("Response from server:" + responseString);
                     retry = false;
+                    Registered = true;
                 }
                 catch (Exception)
                 {
@@ -75,6 +79,7 @@ namespace RobotsAtWar.Client
         
         public Response Attack(Strength strength)
         {
+            Console.WriteLine("I have "+myInfo.Life+" life");
             int power = 0;
             string responseString = "";
             switch (strength)
@@ -206,6 +211,47 @@ namespace RobotsAtWar.Client
             Console.WriteLine("Enemy warrior state is "+warriorState.State + " life is " + warriorState.Life);
             return warriorState;
         }
+
+        public void CheckMe()
+        {
+            string responseString = "";
+            while (myInfo.Life > 0)
+            {
+                try
+                {
+                    var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "MyInfo");
+                    request.Timeout = 100000;
+
+                    var data = Encoding.ASCII.GetBytes("=" + ConfigSettings.ReadSetting(WarriorName));
+
+                    request.Method = "POST";
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.ContentLength = data.Length;
+
+                    using (var stream = request.GetRequestStream())
+                    {
+                        stream.Write(data, 0, data.Length);
+                    }
+
+                    var response = (HttpWebResponse)request.GetResponse();
+
+                    // ReSharper disable once AssignNullToNotNullAttribute
+                    responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Unable to get my info");
+                }
+
+                myInfo = ConvertResponseToWarriorState(responseString);
+
+            }
+
+        }
+
 
         private WarriorState ConvertResponseToWarriorState(string value)
         {

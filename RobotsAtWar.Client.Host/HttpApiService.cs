@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
 using RobotsAtWar.Client;
@@ -31,21 +32,42 @@ namespace RobotsAtWar.Client.Host
             _server = new HttpSelfHostServer(config);
         }
 
+        WarriorClient me = new WarriorClient();
+
         public void Start()
         {
-            //var me = new WarriorClient();
-            WarriorClient me = new WarriorClient();
-
             EventLog.WriteEntry(EventSource, "Opening HttpApiService server.");
             _server.OpenAsync();
 
+
+
+            var fightThread = new Thread(FightThread);
+            var checkThread = new Thread(CheckThread);
+            fightThread.Start();
+            while (!WarriorClient.Registered)
+            {
+                
+            }
+            checkThread.Start();
+
+
+        }
+
+        private void FightThread()
+        {
             string warriorsName = ConfigSettings.ReadSetting("WarriorName");
+
+
             WarriorBrain brain = new WarriorBrain(me);
 
             Console.WriteLine(warriorsName);
             Console.WriteLine("Connecting now...");
             brain.Start(warriorsName);
+        }
 
+        private void CheckThread()
+        {
+            me.CheckMe();
         }
 
         public void Stop()
