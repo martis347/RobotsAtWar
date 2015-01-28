@@ -46,17 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Battlefield.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Enums\Response.cs" />
-    <Compile Include="Info.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Enums\Strength.cs" />
-    <Compile Include="Opponent.cs" />
     <Compile Include="Strategies.cs" />
     <Compile Include="Tools\ConfigSettings.cs" />
-    <Compile Include="Warrior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WarriorBrain.cs" />
     <Compile Include="WarriorClient.cs" />

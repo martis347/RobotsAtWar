@@ -17,6 +17,7 @@ namespace RobotsAtWar.Client
         public WarriorBrain(WarriorClient warriorClient)
         {
             _warriorClient = warriorClient;
+            _logger = LogManager.GetLogger(typeof(WarriorBrain));
         }
 
         public void Start(string warriorName)

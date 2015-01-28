@@ -23,6 +23,10 @@ namespace RobotsAtWar.Client
 
         public static WarriorState myInfo = new WarriorState();
 
+        public WarriorClient()
+        {
+            _logger = LogManager.GetLogger(typeof(WarriorClient));
+        }
         public void Register(string warriorName)
         {
             bool retry = true;
@@ -56,6 +60,7 @@ namespace RobotsAtWar.Client
                 catch (Exception)
                 {
                     ClearCurrentConsoleLine(1, 0);
+                    Console.WriteLine("Connecting now...");
                     _logger.Info("Connecting now...");
                     Thread.Sleep(500);
                 }
@@ -299,7 +304,7 @@ namespace RobotsAtWar.Client
                 }
                 catch (Exception e)
                 {
-                    _logger.Error(e);
+                    //_logger.Error(e);
                     _logger.Info("Lost connection with server");
                 }
 

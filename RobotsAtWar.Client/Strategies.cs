@@ -8,16 +8,11 @@ namespace RobotsAtWar.Client
     {
         public static readonly List<Command> Testing = new List<Command>
         {
-           // new Command(Action.Attack,Strength.Weak),
-           //// new Command(Action.Check),
-           // //new Command(Action.Attack),
-           // new Command(Action.Attack,Strength.Weak),
-           //// new Command(Action.Check),
-           // new Command(Action.Attack,Strength.Weak),
-           // //new Command(Action.Check)
-           //new Command(Action.Check),
-           
-           new Command(Action.Rest,10),
+           new Command(Action.Attack,Strength.Normal),
+           new Command(Action.Attack,Strength.Weak),
+           new Command(Action.Check),
+           new Command(Action.Defend,2),
+           new Command(Action.Check),
 
 
             

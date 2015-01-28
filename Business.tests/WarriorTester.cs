@@ -1,14 +1,14 @@
-﻿using NUnit.Framework;
-using RobotsAtWar.Client;
+﻿//using NUnit.Framework;
+//using RobotsAtWar.Client;
 
-namespace RobotsAtWar.Tests
-{
-    [TestFixture]
-    public class WarriorTester
-    {
-        private const int CLIFE = 100;
-        private Warrior _warrior;
-        private Warrior _warrior2;
+//namespace RobotsAtWar.Tests
+//{
+//    [TestFixture]
+//    public class WarriorTester
+//    {
+//        private const int CLIFE = 100;
+//        private Warrior _warrior;
+//        private Warrior _warrior2;
 
 
         //[TestFixtureSetUp]
@@ -75,10 +75,10 @@ namespace RobotsAtWar.Tests
 //        {
 //            _warrior.Interrupt();
 //            Console.WriteLine(_warrior.Check().State);
-//            Assert.AreEqual(expectedState,_warrior.CheckMe().State);
-//        }
-    }
-}
+////            Assert.AreEqual(expectedState,_warrior.CheckMe().State);
+////        }
+//    }
+//}
 
 //TearDown (after every)
 //FixtureTearDown (after all)
