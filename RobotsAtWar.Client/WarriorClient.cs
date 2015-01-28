@@ -266,7 +266,7 @@ namespace RobotsAtWar.Client
             return warriorState;
         }
 
-        public void CheckMe()
+        public void GetMyInfo()
         {
             string responseString = "";
             while (myInfo.Life > 0)
