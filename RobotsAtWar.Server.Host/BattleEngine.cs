@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
 using RobotsAtWar.Server.Enums;
@@ -29,15 +30,35 @@ namespace RobotsAtWar.Server.Host
             );
             _server = new HttpSelfHostServer(config);
         }
+        BattleField battleField = new BattleField();
 
         public void Start()
         {
             EventLog.WriteEntry(EventSource, "Opening HttpApiService server.");
             _server.OpenAsync();
-            BattleField battleField = new BattleField();
 
-            battleField.WaitForWarriors();
-            Console.WriteLine("Both connected");
+            Thread registrationThread = new Thread(Registration);
+            registrationThread.Start();
+            Thread registrationWithFriendThread = new Thread(RegistrationWithFriend);
+            registrationWithFriendThread.Start();
+            
+
+
+        }
+
+        private void RegistrationWithFriend()
+        {
+            battleField.WaitForWarriorsWithFriend();
+            Console.WriteLine("Both friends connected");
+        }
+
+        private void Registration()
+        {
+            //while (true)
+            //{
+                battleField.WaitForWarriors();
+                Console.WriteLine("Both connected");
+           // }
             battleField.Start();
         }
 

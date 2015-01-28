@@ -10,8 +10,12 @@ namespace RobotsAtWar.Server
     public class BattleField
     {
        
+        private int _numberOfWarriors = 1;
+        private int _numberOfWarriorsWithFriend = 1;
 
         public static Dictionary<string, Warrior> _warriorByName = new Dictionary<string, Warrior>();
+        public static Dictionary<string, Warrior> _warriorByNameWithFriend = new Dictionary<string, Warrior>();
+
 
         private readonly TimeMachine _timeMachine = new TimeMachine();
 
@@ -28,6 +32,12 @@ namespace RobotsAtWar.Server
             }
         }
 
+        public void RegisterWarriorWithFriend(string warriorName, string friendName)
+        {
+            _warriorByName[warriorName] = new Warrior(warriorName, _timeMachine, 10);
+            _warriorByName[warriorName].SetOpponent(friendName);
+        }
+
         public DateTime GetBattleTime()
         {
             return _battleTime;
@@ -37,19 +47,44 @@ namespace RobotsAtWar.Server
         {
             return _warriorByName[warriorName];
         }
+
+        public Warrior GetWarriorWithFriendByName(string warriorName)
+        {
+            return _warriorByNameWithFriend[warriorName];
+        }
         
         public void WaitForWarriors()
         {
-            Console.WriteLine("Waiting for players");
-            while (_warriorByName.Count < 1)
+            Console.WriteLine("Waiting for first player");
+            while (_warriorByName.Count %2 == 0)
             {
                 ClearCurrentConsoleLine(1, 0);
-                Console.WriteLine("Waiting for players");
+                Console.WriteLine("Waiting for first player");
                 Thread.Sleep(2000);
             }
             ClearCurrentConsoleLine(2, 2);
             Console.WriteLine("Waiting other player to join");
-            while (_warriorByName.Count < 2)
+            while (_warriorByName.Count %2 == 1)
+            {
+                ClearCurrentConsoleLine(1, 0);
+                Console.WriteLine("Waiting other player to join");
+                Thread.Sleep(500);
+            }
+            ClearCurrentConsoleLine(2, 2);
+        }
+
+        public void WaitForWarriorsWithFriend()
+        {
+            Console.WriteLine("Waiting for first player");
+            while (_warriorByNameWithFriend.Count % 2 == 0)
+            {
+                ClearCurrentConsoleLine(1, 0);
+                Console.WriteLine("Waiting for first player");
+                Thread.Sleep(2000);
+            }
+            ClearCurrentConsoleLine(2, 2);
+            Console.WriteLine("Waiting other player to join");
+            while (_warriorByNameWithFriend.Count % 2 == 1)
             {
                 ClearCurrentConsoleLine(1, 0);
                 Console.WriteLine("Waiting other player to join");
@@ -67,18 +102,16 @@ namespace RobotsAtWar.Server
             Console.SetCursorPosition(0, currentLineCursor+lineToContinue);
         }
 
-
         public void Start()
         {
-            _warriorByName.ElementAt(0).Value.SetOpponent(_warriorByName.ElementAt(1).Key);
-            _warriorByName.ElementAt(1).Value.SetOpponent(_warriorByName.ElementAt(0).Key);
-
+            _warriorByName.ElementAt(_numberOfWarriors).Value.SetOpponent(_warriorByName.ElementAt(_numberOfWarriors+1).Key);
+            _warriorByName.ElementAt(++_numberOfWarriors).Value.SetOpponent(_warriorByName.ElementAt(_numberOfWarriors-1).Key);
+            _numberOfWarriors++;
 
 
         }
 
-
-
+        
     }
 
     
