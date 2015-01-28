@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using log4net;
 using RobotsAtWar.Client.Enums;
 using RobotsAtWar.Client.Tools;
 using RobotsAtWar.Enums;
@@ -16,7 +17,10 @@ namespace RobotsAtWar.Client
         private const string ServerUrl = "ServerUrl";
         private const string WarriorName = "WarriorName";
 
+        private static ILog _logger;
+
         public static bool Registered = false;
+
         public static WarriorState myInfo = new WarriorState();
 
         public void Register(string warriorName)
@@ -46,20 +50,16 @@ namespace RobotsAtWar.Client
 
                     var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
-                    Console.WriteLine("Response from server:" + responseString);
                     retry = false;
                     Registered = true;
                 }
                 catch (Exception)
                 {
                     ClearCurrentConsoleLine(1, 0);
-                    Console.WriteLine("Connecting now...");
+                    _logger.Info("Connecting now...");
                     Thread.Sleep(500);
-                    
-
-                    
                 }
-                
+                _logger.Info("I have succesfully registered!");
             }
 
         }
@@ -72,6 +72,7 @@ namespace RobotsAtWar.Client
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, currentLineCursor + lineToContinue);
         }
+
         //public DateTime GetBattleTime()
         //{
 
@@ -79,7 +80,6 @@ namespace RobotsAtWar.Client
         
         public Response Attack(Strength strength)
         {
-            Console.WriteLine("I have "+myInfo.Life+" life");
             int power = 0;
             string responseString = "";
             switch (strength)
@@ -94,6 +94,7 @@ namespace RobotsAtWar.Client
                     power = 1;
                     break;
             }
+            _logger.Info("Trying to deal "+power+" damage");
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Attack");
@@ -117,17 +118,32 @@ namespace RobotsAtWar.Client
 
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("Lost connection with server");
+                _logger.Error(e);
+                _logger.Info("Lost connection with server");
             }
             //Thread.Sleep(SleepTime(strength));
             Response resp = new Response();
             resp = StringToResponse(Int32.Parse(responseString));
-            Console.WriteLine("Server response "+resp);
             if (resp == Response.Dead)
             {
                 WarriorBrain.enemyIsDead = true;
+            }
+            switch (resp)
+            {
+                case Response.Success:
+                    _logger.Info("Success! I have dealt "+ power+" damage");
+                    break;
+                case Response.Interrupted:
+                    _logger.Info("Fail... I got interrupted!");
+                    break;
+                case Response.Defending:
+                    _logger.Info("Fail... Enemy was defending!");
+                    break;
+                case Response.Dead:
+                    _logger.Info("Success! Enemy is dead!");
+                    break;
             }
             return resp;
         }
@@ -148,27 +164,11 @@ namespace RobotsAtWar.Client
             return Response.Success;
         }
 
-        private int SleepTime(Strength strength)
-        {
-            switch (strength)
-            {
-                case Strength.None:
-                    return 1000;
-                case Strength.Weak:
-                    return 1000;
-                case Strength.Normal:
-                    return 2000;
-                case Strength.Strong:
-                    return 3000;
-            }
-            return 1000;
-        }
-
         public void Defend(int time)
         {
                 try
                 {
-                    Console.WriteLine("Trying to defend for "+ time + " seconds");
+                    _logger.Info("Defending for " + time + " seconds");
                     var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Defend");
                     request.Timeout = 100000;
 
@@ -190,9 +190,10 @@ namespace RobotsAtWar.Client
                     //Thread.Sleep(time * 1000);
                     Console.WriteLine("Successfully defended for "+time+" seconds");
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    Console.WriteLine("Unable to start defending");
+                    _logger.Error(e);
+                    _logger.Info("Lost connection with server");
                 }
         }
 
@@ -200,7 +201,7 @@ namespace RobotsAtWar.Client
         {
             try
             {
-                Console.WriteLine(myInfo.Life);
+                _logger.Info("Resting for " + time + " seconds");
                 var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "Rest");
                 request.Timeout = 100000;
 
@@ -220,11 +221,11 @@ namespace RobotsAtWar.Client
                 // ReSharper disable once AssignNullToNotNullAttribute
                 var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
             }
-            catch (Exception)
+            catch (Exception e )
             {
-                Console.WriteLine("Unable to start resting");
+                _logger.Error(e);
+                _logger.Info("Lost connection with server");
             }
-            //Thread.Sleep(time * 1000);
         }
 
         public WarriorState Check()
@@ -255,18 +256,19 @@ namespace RobotsAtWar.Client
                 
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("Lost connection with server");
+                _logger.Error(e);
+                _logger.Info("Lost connection with server");
             }
             //Thread.Sleep(500);
             
             warriorState = ConvertResponseToWarriorState(responseString);
-            Console.WriteLine("Enemy warrior state is "+warriorState.State + " life is " + warriorState.Life);
+            _logger.Info("Enemy warrior state is " + warriorState.State + " life is " + warriorState.Life);
             return warriorState;
         }
 
-        public void CheckMe()
+        public void GetMyInfo()
         {
             string responseString = "";
             while (myInfo.Life > 0)
@@ -295,9 +297,10 @@ namespace RobotsAtWar.Client
 
 
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    Console.WriteLine("Unable to get my info");
+                    _logger.Error(e);
+                    _logger.Info("Lost connection with server");
                 }
 
                 myInfo = ConvertResponseToWarriorState(responseString);

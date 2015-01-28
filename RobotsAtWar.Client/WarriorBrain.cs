@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using log4net;
 using RobotsAtWar.Client.Tools;
 using Action = RobotsAtWar.Enums.Action;
 
@@ -8,6 +9,8 @@ namespace RobotsAtWar.Client
    public class WarriorBrain
    {
        public static bool enemyIsDead = false;
+
+       private static ILog _logger;
 
         private WarriorClient _warriorClient;
 
@@ -37,12 +40,14 @@ namespace RobotsAtWar.Client
                 if (WarriorClient.myInfo.Life <= 0)
                 {
                     Console.WriteLine("I have lost the battle");
+                    _logger.Info("I have lost the battle");
                     Thread.Sleep(3000);
                     Environment.Exit(0);
                 }
                 ExecuteNextCommand(nextActionNumber++);
             }
             Console.Clear();
+            _logger.Info("I have WON the battle!!!!!");
             Console.WriteLine("I have WON the battle!!!!!");
         }
 
