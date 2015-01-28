@@ -267,7 +267,7 @@ namespace RobotsAtWar.Client
                 _logger.Info("Lost connection with server");
             }
             //Thread.Sleep(500);
-            
+            //"{<State:0>},
             warriorState = ConvertResponseToWarriorState(responseString);
             _logger.Info("Enemy warrior state is " + warriorState.State + " life is " + warriorState.Life);
             return warriorState;

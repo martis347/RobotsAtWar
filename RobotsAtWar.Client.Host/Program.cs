@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using log4net.Config;
 using RobotsAtWar.Client.Tools;
 using Topshelf;
 
@@ -8,7 +10,7 @@ namespace RobotsAtWar.Client.Host
     {
         static void Main()
         {
-            //XmlConfigurator.Configure(new FileInfo("..\\..\\App.config"));
+            XmlConfigurator.Configure(new FileInfo("..\\..\\App.config"));
 
             HostFactory.Run(x =>
             {
