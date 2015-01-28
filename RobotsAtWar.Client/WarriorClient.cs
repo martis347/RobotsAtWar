@@ -17,6 +17,8 @@ namespace RobotsAtWar.Client
         private const string WarriorName = "WarriorName";
 
         public static bool Registered = false;
+        public static bool RegisteredWithFriend = false;
+
         public static WarriorState myInfo = new WarriorState();
 
         public void Register(string warriorName)
@@ -93,7 +95,7 @@ namespace RobotsAtWar.Client
 
                     Console.WriteLine("Response from server:" + responseString);
                     retry = false;
-                    Registered = true;
+                    RegisteredWithFriend = true;
                 }
                 catch (Exception)
                 {
@@ -351,6 +353,47 @@ namespace RobotsAtWar.Client
             }
 
         }
+
+        public void GetMyInfoWithFriend()
+        {
+            string responseString = "";
+            while (myInfo.Life > 0)
+            {
+                try
+                {
+                    var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "MyInfoWithFriend");
+                    request.Timeout = 100000;
+
+                    var data = Encoding.ASCII.GetBytes("=" + ConfigSettings.ReadSetting(WarriorName));
+
+                    request.Method = "POST";
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.ContentLength = data.Length;
+
+                    using (var stream = request.GetRequestStream())
+                    {
+                        stream.Write(data, 0, data.Length);
+                    }
+
+                    var response = (HttpWebResponse)request.GetResponse();
+
+                    // ReSharper disable once AssignNullToNotNullAttribute
+                    responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Unable to get my info");
+                }
+
+                myInfo = ConvertResponseToWarriorState(responseString);
+                // Thread.Sleep(50);
+            }
+
+        }
+
 
 
         private WarriorState ConvertResponseToWarriorState(string value)

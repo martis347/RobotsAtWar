@@ -39,6 +39,11 @@ namespace RobotsAtWar.Server
             return BattleFieldSingleton.BattleField.GetWarriorByName(myName);
         }
 
+        private Warrior MeWithFriend(string myName)
+        {
+            return BattleFieldSingleton.BattleField.GetWarriorWithFriendByName(myName);
+        }
+
         public Response Attack(string name, Strength str)
         {
             if (Opponent(name).WarriorState.State == State.Dead || Opponent(name).WarriorState.Life <= 0)
@@ -141,6 +146,10 @@ namespace RobotsAtWar.Server
         public WarriorState MyInfo()
         {
             return Me(_warriorName).WarriorState;
+        }
+        public WarriorState MyInfoWithFriend()
+        {
+            return MeWithFriend(_warriorName).WarriorState;
         }
 
         public void Reset()

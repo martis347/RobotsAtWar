@@ -34,8 +34,8 @@ namespace RobotsAtWar.Server
 
         public void RegisterWarriorWithFriend(string warriorName, string friendName)
         {
-            _warriorByName[warriorName] = new Warrior(warriorName, _timeMachine, 10);
-            _warriorByName[warriorName].SetOpponent(friendName);
+            _warriorByNameWithFriend[warriorName] = new Warrior(warriorName, _timeMachine, 10);
+            _warriorByNameWithFriend[warriorName].SetOpponent(friendName);
         }
 
         public DateTime GetBattleTime()
@@ -59,6 +59,7 @@ namespace RobotsAtWar.Server
             while (_warriorByName.Count %2 == 0)
             {
                 ClearCurrentConsoleLine(1, 0);
+
                 Console.WriteLine("Waiting for first player");
                 Thread.Sleep(2000);
             }
@@ -79,7 +80,8 @@ namespace RobotsAtWar.Server
             while (_warriorByNameWithFriend.Count % 2 == 0)
             {
                 ClearCurrentConsoleLine(1, 0);
-                Console.WriteLine("Waiting for first player");
+
+                Console.WriteLine("Waiting for first player friend");
                 Thread.Sleep(2000);
             }
             ClearCurrentConsoleLine(2, 2);

@@ -73,6 +73,7 @@
     <Compile Include="Controllers\AttackController.cs" />
     <Compile Include="BattleEngine.cs" />
     <Compile Include="Controllers\CheckController.cs" />
+    <Compile Include="Controllers\MyInfoWithFriendController.cs" />
     <Compile Include="Controllers\DefendController.cs" />
     <Compile Include="Controllers\MyInfoController.cs" />
     <Compile Include="Controllers\RegistrationWithFriendController.cs" />

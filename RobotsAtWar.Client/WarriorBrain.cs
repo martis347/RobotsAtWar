@@ -23,7 +23,10 @@ namespace RobotsAtWar.Client
                 _warriorClient.Register(warriorName);
                 
             }
-            _warriorClient.RegisterWithFriend(warriorName,friendName);
+            else
+            {
+                _warriorClient.RegisterWithFriend(warriorName, friendName);                
+            }
             Thread.Sleep(1000);
             //DateTime battleTime = DateTime.MinValue;
             //while (battleTime == DateTime.MinValue)

@@ -34,6 +34,9 @@ namespace RobotsAtWar.Client.Host
 
         WarriorClient me = new WarriorClient();
 
+        readonly string _warriorsName = ConfigSettings.ReadSetting("WarriorName");
+        readonly string _friendName = ConfigSettings.ReadSetting("FriendName");
+
         public void Start()
         {
             EventLog.WriteEntry(EventSource, "Opening HttpApiService server.");
@@ -44,10 +47,22 @@ namespace RobotsAtWar.Client.Host
             var fightThread = new Thread(FightThread);
             var checkThread = new Thread(CheckThread);
             fightThread.Start();
-            while (!WarriorClient.Registered)
+            if (_friendName == "notSet")
             {
-                
+                while (!WarriorClient.Registered)
+                {
+
+                }
             }
+            else
+            {
+                while (!WarriorClient.RegisteredWithFriend)
+                {
+
+                }
+            }
+                
+            
             checkThread.Start();
 
 
@@ -55,21 +70,23 @@ namespace RobotsAtWar.Client.Host
 
         private void FightThread()
         {
-            string warriorsName = ConfigSettings.ReadSetting("WarriorName");
-            string friendName = ConfigSettings.ReadSetting("FriendName");
+            
 
 
             WarriorBrain brain = new WarriorBrain(me);
 
-            Console.WriteLine(warriorsName);
+            Console.WriteLine(_warriorsName);
             Console.WriteLine("Connecting now...");
-            brain.Start(warriorsName,friendName);
+            brain.Start(_warriorsName,_friendName);
         }
 
         private void CheckThread()
         {
-
-            me.GetMyInfo();
+            if (_friendName == "notSet")
+            {
+                me.GetMyInfo();
+            }
+            me.GetMyInfoWithFriend();
         }
 
         public void Stop()
