@@ -16,9 +16,14 @@ namespace RobotsAtWar.Client
             _warriorClient = warriorClient;
         }
 
-        public void Start(string warriorName)
+        public void Start(string warriorName,string friendName)
         {
-            _warriorClient.Register(warriorName);
+            if (friendName == "notSet")
+            {
+                _warriorClient.Register(warriorName);
+                
+            }
+            _warriorClient.RegisterWithFriend(warriorName,friendName);
             Thread.Sleep(1000);
             //DateTime battleTime = DateTime.MinValue;
             //while (battleTime == DateTime.MinValue)

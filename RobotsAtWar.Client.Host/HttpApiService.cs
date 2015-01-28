@@ -56,13 +56,14 @@ namespace RobotsAtWar.Client.Host
         private void FightThread()
         {
             string warriorsName = ConfigSettings.ReadSetting("WarriorName");
+            string friendName = ConfigSettings.ReadSetting("FriendName");
 
 
             WarriorBrain brain = new WarriorBrain(me);
 
             Console.WriteLine(warriorsName);
             Console.WriteLine("Connecting now...");
-            brain.Start(warriorsName);
+            brain.Start(warriorsName,friendName);
         }
 
         private void CheckThread()

@@ -64,6 +64,52 @@ namespace RobotsAtWar.Client
 
         }
 
+        public void RegisterWithFriend(string warriorName, string friendName)
+        {
+            bool retry = true;
+            while (retry)
+            {
+                try
+                {
+
+                    // TODO: move http logic to a wrapper class
+                    var request = (HttpWebRequest)WebRequest.Create(ConfigSettings.ReadSetting(ServerUrl) + "RegistrationWithFriend");
+                    request.Timeout = 100000;
+
+                    var data = Encoding.ASCII.GetBytes("=" + warriorName+","+friendName);
+
+                    request.Method = "POST";
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.ContentLength = data.Length;
+
+                    using (var stream = request.GetRequestStream())
+                    {
+                        stream.Write(data, 0, data.Length);
+                    }
+
+                    var response = (HttpWebResponse)request.GetResponse();
+
+                    var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+                    Console.WriteLine("Response from server:" + responseString);
+                    retry = false;
+                    Registered = true;
+                }
+                catch (Exception)
+                {
+                    ClearCurrentConsoleLine(1, 0);
+                    Console.WriteLine("Connecting now...");
+                    Thread.Sleep(500);
+
+
+
+                }
+
+            }
+
+        }
+
+
         private static void ClearCurrentConsoleLine(int lineToClean, int lineToContinue)
         {
             Console.SetCursorPosition(0, Console.CursorTop - lineToClean);
