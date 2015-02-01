@@ -233,7 +233,6 @@ namespace RobotsAtWar.Client
                     // ReSharper disable once AssignNullToNotNullAttribute
                     var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
                     //Thread.Sleep(time * 1000);
-                    Console.WriteLine("Successfully defended for "+time+" seconds");
                 }
                 catch (Exception e)
                 {

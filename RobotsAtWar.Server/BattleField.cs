@@ -11,6 +11,7 @@ namespace RobotsAtWar.Server
     {
         public static Dictionary<string, Warrior> _warriorByName = new Dictionary<string, Warrior>();
 
+        bool FriendIs = false;
         private readonly TimeMachine _timeMachine = new TimeMachine();
 
         private DateTime _battleTime;
@@ -19,11 +20,6 @@ namespace RobotsAtWar.Server
         {
             _warriorByName[warriorName] = new Warrior(warriorName,_timeMachine,10);
            // _warriorByName.Add(warriorName, new Warrior(warriorName,_timeMachine));
-
-            if (_warriorByName.Count == 1)
-            {
-                _battleTime = DateTime.UtcNow.AddSeconds(5);
-            }
         }
 
         public DateTime GetBattleTime()
@@ -67,8 +63,19 @@ namespace RobotsAtWar.Server
 
         public void Start()
         {
-            _warriorByName.ElementAt(0).Value.SetOpponent(_warriorByName.ElementAt(1).Key);
-            _warriorByName.ElementAt(1).Value.SetOpponent(_warriorByName.ElementAt(0).Key);
+            if (!FriendIs)
+            {
+                _warriorByName.ElementAt(0).Value.SetOpponent(_warriorByName.ElementAt(1).Key);
+                _warriorByName.ElementAt(1).Value.SetOpponent(_warriorByName.ElementAt(0).Key);
+            }
+        }
+
+        public void RegisterWarriorWithFriend(string warriorName, string friendName)
+        {
+            _warriorByName[warriorName] = new Warrior(warriorName, _timeMachine, 10);
+            _warriorByName[warriorName].SetOpponent(friendName);
+
+            FriendIs = true;
         }
     }
 
