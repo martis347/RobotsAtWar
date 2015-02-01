@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Threading;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
-using RobotsAtWar.Client;
 using RobotsAtWar.Client.Tools;
 
 namespace RobotsAtWar.Client.Host
