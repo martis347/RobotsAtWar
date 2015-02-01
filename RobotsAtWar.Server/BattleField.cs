@@ -9,8 +9,6 @@ namespace RobotsAtWar.Server
 {
     public class BattleField
     {
-       
-
         public static Dictionary<string, Warrior> _warriorByName = new Dictionary<string, Warrior>();
 
         private readonly TimeMachine _timeMachine = new TimeMachine();
@@ -67,18 +65,11 @@ namespace RobotsAtWar.Server
             Console.SetCursorPosition(0, currentLineCursor+lineToContinue);
         }
 
-
         public void Start()
         {
             _warriorByName.ElementAt(0).Value.SetOpponent(_warriorByName.ElementAt(1).Key);
             _warriorByName.ElementAt(1).Value.SetOpponent(_warriorByName.ElementAt(0).Key);
-
-
-
         }
-
-
-
     }
 
     
